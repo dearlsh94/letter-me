@@ -6,7 +6,7 @@ import NotFound from '../pages/NotFound.svelte';
 
 export default {
   '/': Home,
-  '/my/:encrypt?': My,
+  '/my/:salt?': My,
   '/create': CreateLink,
   '/send/:salt?': SendNickName,
   '*': NotFound

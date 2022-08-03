@@ -1,28 +1,39 @@
 <script lang="ts">
-	import { link } from "svelte-spa-router";
-	import { redirectPage } from '../utils/commonUtil';
-	let id: string = '';
+	import { redirectPage } from "../utils/commonUtil";
+	let salt: string = "";
 
 	const searchId = () => {
-		if (!id) {
-			alert('ID를 입력해주세요.')
-			return ;
+		if (!salt) {
+			alert("ID를 입력해주세요.");
+			return;
 		}
 
-		redirectPage(`/my/${id}`)
-	}
+		redirectPage(`/my/${salt}`);
+	};
+
+	const moveCreateLink = () => {
+		redirectPage(`/create`);
+	};
 </script>
 
 <div class="bodyWrapper">
 	<div class="titleWrapper">
-		<h1>내 별명을 지어줘</h1>
+		<h1>내 별명을 지어줘 !</h1>
+		<h4>What's My Nickname ?</h4>
 	</div>
-	<div class="inputWrapper">
-		<input type="number" bind:value={id} label="내 ID로 별명 조회하기" placeholder="내 ID로 별명 조회하기"/>
-		<button on:click={searchId}>조회</button>
-	</div>
-	<div class="menuWrapper">
-		<a href="/create" use:link>내 별명 만들기</a>
+
+	<div class="contentWrapper">
+		<div class="inputButtonWrapper">
+			<input
+				bind:value={salt}
+				label="내 ID로 별명 찾기"
+				placeholder="내 ID로 별명 찾기"
+			/>
+			<button class="button-6" on:click={searchId}>조회</button>
+		</div>
+		<button class="button-6 goButton" on:click={moveCreateLink}
+			>내 별명 만들러가기</button
+		>
 	</div>
 </div>
 
@@ -34,22 +45,20 @@
 		text-align: center;
 	}
 
-	.inputWrapper {
-		margin-top: 30px;
+	h4 {
+		padding: 0px;
+		margin: 5px;
 	}
 
 	input {
-		width: 700px;
+		width: 80%;
 		height: 50px;
 		border-radius: 8px;
 		padding: 15px;
 	}
 
-	.menuWrapper {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+	.goButton {
+		margin-top: 20px;
 	}
 
 	@media (max-width: 768px) {
@@ -58,8 +67,13 @@
 		}
 
 		input {
-			width: 80%;
+			width: 100%;
 			padding: 10px;
+		}
+
+		button {
+			width: 100%;
+			margin-top: 5px;
 		}
 	}
 </style>

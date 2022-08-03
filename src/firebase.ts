@@ -42,8 +42,10 @@ export const getPersonBySalt = async (salt: string) => {
       const person: IPersonData = {
         ...res
       }
-      person.nickNames = Object.values(res.nickNames)
-      
+      if (res.nickNames) {
+        person.nickNames = Object.values(res.nickNames)
+      }
+
       return person;
     } else {
       console.log("No data available");

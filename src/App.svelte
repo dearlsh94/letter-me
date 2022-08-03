@@ -19,7 +19,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		width: 100%;
-		height: 100%;
+		height: auto;
 		background-image: url("/static/images/bg_whale_1920.jpg");
 		background-position: center;
 		background-size: cover;

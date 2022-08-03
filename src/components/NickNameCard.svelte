@@ -48,4 +48,10 @@
   .rightText {
     text-align: right;
   }
+
+  @media (max-width: 768px) {
+    .cardWrapper {
+      width: 80%
+    }
+  }
 </style>
