@@ -40,7 +40,7 @@
 			const successful = document.execCommand("copy");
 			if (successful) {
 				console.log(`Copying text was successful : ${valueCopy}`);
-				alert("클립보드에 주소를 복사했어요!");
+				alert("클립보드에 내 별명지 작성 주소를 복사했어요!");
 			} else {
 				console.log("Copying text was unsuccessful");
 				alert("Oops! 복사에 실패했어요. 새로고침 후 다시 시도해주세요.");

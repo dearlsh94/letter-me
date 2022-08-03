@@ -22,6 +22,7 @@
     const encrypted = encryptData(data);
     data.encrypted = encrypted;
     data.myLink = `${document.location.origin}/#/my/${encrypted}`;
+
     console.log(data);
 
     // NOTE Firebase Add
@@ -71,7 +72,7 @@
           label="내 이름은"
           placeholder="내 이름은"
         />
-        <button class="button-6" on:click={createUrl}>생성</button>
+        <button class="button-6" on:click={createUrl}>만들기</button>
       </div>
       <button class="button-6 goButton" on:click={moveMyLink}
         >내 별명 찾으러가기</button

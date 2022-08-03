@@ -27,13 +27,13 @@
 			<input
 				class="textInput"
 				bind:value={salt}
-				label="내 ID로 별명 찾기"
-				placeholder="내 ID로 별명 찾기"
+				label="ID로 별명 찾기"
+				placeholder="ID로 별명 찾기"
 			/>
-			<button class="button-6" on:click={searchId}>찾기</button>
+			<button class="button-6" on:click={searchId}>별명 찾기</button>
 		</div>
 		<button class="button-6 goButton" on:click={moveCreateLink}
-			>내 별명 만들러가기</button
+			>별명지 만들러가기</button
 		>
 	</div>
 </div>

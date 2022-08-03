@@ -1,28 +1,38 @@
 <script lang="ts">
+	const moveHome = () => {
+		document.location.href = "/";
+	};
 </script>
 
-<main>
-	<h1>존재하지 않는 페이지입니다 ! </h1>
-</main>
+<div class="bodyWrapper">
+	<div class="contentWrapper">
+		<div class="noticeWrapper">
+			<h1>존재하지 않는 페이지예요.</h1>
+			<h4>고래를 타고 홈 화면으로 이동해주세요.</h4>
+			<img
+				src="/static/icons/icon-blue-whale-512.png"
+				alt="whale-logo"
+				on:click={moveHome}
+			/>
+		</div>
+	</div>
+</div>
 
 <style>
-	main {
+	.noticeWrapper {
 		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+		width: 100%;
 	}
+
+	img {
+    width: 60px;
+    padding: 0px 20px 0px 20px;
+    cursor: pointer;
+  }
 
 	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
+		color: white;
+		font-size: 3em;
 		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 </style>
