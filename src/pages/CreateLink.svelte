@@ -85,10 +85,6 @@
     text-align: center;
   }
 
-  .bodyWrapper {
-    background-image: url("/static/images/bg_whale_1920.jpg");
-  }
-
   .inputWrapper {
     margin-top: 30px;
   }
@@ -121,10 +117,6 @@
     input {
       width: 80%;
       padding: 10px;
-    }
-
-    .bodyWrapper {
-      background-image: url("/static/images/bg_whale_1280.jpg");
     }
   }
 </style>

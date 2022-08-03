@@ -53,13 +53,4 @@
 </div>
 
 <style>
-  .bodyWrapper {
-    background-image: url("/static/images/bg_whale_1920.jpg");
-  }
-
-  @media (max-width: 768px) {
-    .bodyWrapper {
-      background-image: url("/static/images/bg_whale_1280.jpg");
-    }
-  }
 </style>

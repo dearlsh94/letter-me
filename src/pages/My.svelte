@@ -51,10 +51,6 @@
 		font-weight: 100;
 	}
 
-	.bodyWrapper {
-		background-image: url("/static/images/bg_whale_1920.jpg");
-	}
-	
 	.cardsWrapper {
 		width: 700px;
 		display: flex;
