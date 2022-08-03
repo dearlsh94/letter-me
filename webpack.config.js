@@ -56,6 +56,12 @@ module.exports = {
 					fullySpecified: false
 				}
 			},
+			{
+				test: /\.(png|jpg)$/,
+				use: [
+					'file-loader'
+				]
+			}
 		]
 	},
 	mode,

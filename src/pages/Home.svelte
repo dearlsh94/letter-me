@@ -30,7 +30,7 @@
 				label="내 ID로 별명 찾기"
 				placeholder="내 ID로 별명 찾기"
 			/>
-			<button class="button-6" on:click={searchId}>조회</button>
+			<button class="button-6" on:click={searchId}>찾기</button>
 		</div>
 		<button class="button-6 goButton" on:click={moveCreateLink}
 			>내 별명 만들러가기</button
