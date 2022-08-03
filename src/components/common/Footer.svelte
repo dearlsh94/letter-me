@@ -1,28 +1,76 @@
+<script lang="ts">
+  import { getLinkCount } from '../../firebase'
+  import type { IInfoCount } from '../../types/index'
+
+  let infoCount: IInfoCount = {
+    userCount: 0,
+    nickNameCount: 0
+  }
+
+  const init = async () => {
+    const res = await getLinkCount()
+    if (res) {
+      infoCount = res
+    }
+  }
+
+  init()
+</script>
+
 <div class="footerWrapper">
-  <img src="/static/icons/icon-copyright-64.png" alt="copyright icon">
-  <div>
-    <p>
-      <a href="https://www.flaticon.com/kr/free-icons/" title="고래 아이콘">고래 아이콘  제작자: Freepik - Flaticon</a>
+  <div class="infoWrapper">
+    <p class="infoText">
+      {infoCount.userCount}개의 별명지가 만들어졌어요.
     </p>
-    <p>
-      <a href="https://www.flaticon.com/free-icons/copyright" title="copyright icons">Copyright icons created by Prosymbols Premium - Flaticon</a>
+    <p class="infoText">
+      {infoCount.nickNameCount}개의 별명이 지어졌어요.
     </p>
+  </div>
+  <div class="copyrightWrapper">
+    <img src="/static/icons/icon-copyright-64.png" alt="copyright icon">
+    <div>
+      <p class="copyrightText">
+        <a href="https://www.flaticon.com/kr/free-icons/" title="고래 아이콘">고래 아이콘  제작자: Freepik - Flaticon</a>
+      </p>
+      <p class="copyrightText">
+        <a href="https://www.flaticon.com/free-icons/copyright" title="copyright icons">Copyright icons created by Prosymbols Premium - Flaticon</a>
+      </p>
+    </div>
   </div>
 </div>
 <style>
-  img {
-    width: 16px;
+  .footerWrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  p {
+  img {
+    width: 12px;
+  }
+
+  .infoWrapper {
+    text-align: left;
+  }
+
+  .copyrightWrapper {
+    text-align: right;
+  }
+
+  .infoText {
+    margin: 2px;
+    padding: 1px;
+    font-size: 12px;
+  }
+
+  .copyrightText {
     margin: 2px;
     padding: 1px;
     font-size: 9px;
     text-decoration: underline;
-  }
-
-  .footerWrapper {
-    padding: 10px 5px;
-    text-align: center;
   }
 </style>

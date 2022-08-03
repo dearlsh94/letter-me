@@ -31,8 +31,8 @@
   // NOTE --- copy link
   let valueCopy: string | null = null;
   let areaDom: any;
-  const copyLink = async () => {
-    valueCopy = sendLink;
+  const copyLink = async (type: 'link' | 'id') => {
+    valueCopy = type === 'link' ? sendLink : type === 'id' ? salt : '';
     await tick();
     areaDom.focus();
     areaDom.select();
@@ -89,19 +89,19 @@
           (내 ID : {salt})
         </span>
         <div class="buttonWrapper">
-          <button class="button-6 copyButton" on:click={copyLink}>
+          <button class="button-6 copyButton" on:click={() => copyLink('link')}>
             주소 복사하기
           </button>
-          <button class="button-6 copyButton" on:click={copyLink}>
+          {#if valueCopy != null}
+            <textarea bind:this={areaDom}>{valueCopy}</textarea>
+          {/if}
+          <button class="button-6 copyButton" on:click={() => copyLink('id')}>
             ID 복사하기
           </button>
         </div>
       </div>
     {/if}
   </div>
-  {#if valueCopy != null}
-    <textarea bind:this={areaDom}>{valueCopy}</textarea>
-  {/if}
 </div>
 
 <style>
@@ -132,10 +132,10 @@
     width: 100%;
   }
 
-	.goButton {
-		margin-top: 20px;
-		width: 100%;
-	}
+  .goButton {
+    margin-top: 20px;
+    width: 100%;
+  }
 
   p {
     margin: 0px;

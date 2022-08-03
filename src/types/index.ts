@@ -12,3 +12,8 @@ export interface IPersonData {
   myLink?: string
   nickNames?: INickName[]
 }
+
+export interface IInfoCount {
+  userCount: number,
+  nickNameCount: number
+}
