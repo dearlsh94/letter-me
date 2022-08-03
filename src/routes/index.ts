@@ -1,10 +1,14 @@
 import Home from '../pages/Home.svelte';
-import Second from '../pages/My.svelte';
+import My from '../pages/My.svelte';
+import CreateLink from '../pages/CreateLink.svelte';
+import SendNickName from '../pages/SendNickName.svelte';
 import NotFound from '../pages/NotFound.svelte';
 
 export default {
   '/': Home,
-  '/my/:id?': Second,
+  '/my/:encrypt?': My,
+  '/create': CreateLink,
+  '/send/:salt?': SendNickName,
   '*': NotFound
 
   // NOTE Example) ==============================

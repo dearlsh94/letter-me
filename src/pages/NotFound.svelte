@@ -2,7 +2,7 @@
 </script>
 
 <main>
-	<h1>404 Not Found ! </h1>
+	<h1>존재하지 않는 페이지입니다 ! </h1>
 </main>
 
 <style>

@@ -1,52 +1,46 @@
 <script lang="ts">
 	import NickNameCard from "../components/NickNameCard.svelte";
-	import type { INickName } from "../types/index";
+	import { decryptData } from "../utils/cryptoUtil";
+	import type { INickName, IPersonData } from "../types/index";
+	import { getPersonBySalt } from "../firebase";
 
 	interface IParam {
-		id?: string;
+		encrypt?: string;
+	}
+	export let params: IParam = {};
+	let data: IPersonData = {
+		name: "",
+		salt: "",
+	};
+	let person: IPersonData | null = null;
+
+	if (params.encrypt) {
+		data = decryptData(params.encrypt);
+		console.log(data);
 	}
 
-	export let params: IParam = {};
+	const init = async () => {
+		person = await getPersonBySalt(data.salt);
+		console.log(person);
+	};
 
-	let nickNames: INickName[] = [
-		{
-			nickName: "star",
-			reason: "bling bling bling bling",
-			fromId: 1234,
-		},
-		{
-			nickName: "flower",
-			reason: "beauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beautybeauty beauty",
-			fromId: 2345,
-		},
-		{
-			nickName: "air",
-			reason: "no see",
-			fromId: 3456,
-		},
-		{
-			nickName: "fire",
-			reason: "angry",
-			fromId: 4567,
-		},
-	];
+	if (data.salt !== "") {
+		init();
+	}
 </script>
 
 <div class="bodyWrapper">
 	<div class="titleWrapper">
-		<h1>{params?.id}의 별명들은!</h1>
+		<h1>{data?.name}의 별명들은!</h1>
 	</div>
 
-	<div class="urlWrapper">
-		<span>URL : </span>
-		<!-- <img src="../d"> -->
-	</div>
-
-	<div class="cardsWrapper">
-		{#each nickNames as nickName}
-			<NickNameCard {nickName} />
-		{/each}
-	</div>
+	{#if person && person.nickNames}
+		<div class="cardsWrapper">
+			{#each person.nickNames as nickName}
+				<NickNameCard {nickName} />
+			{/each}
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -60,11 +54,7 @@
 	.bodyWrapper {
 		background-image: url("/static/images/bg_whale_1920.jpg");
 	}
-
-	.urlWrapper {
-		margin-top: 10px;
-	}
-
+	
 	.cardsWrapper {
 		width: 700px;
 		display: flex;

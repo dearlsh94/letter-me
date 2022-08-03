@@ -11,7 +11,6 @@
 
 		redirectPage(`/my/${id}`)
 	}
-
 </script>
 
 <div class="bodyWrapper">
@@ -23,7 +22,7 @@
 		<button on:click={searchId}>조회</button>
 	</div>
 	<div class="menuWrapper">
-		<a href="/my" use:link>내 별명 만들기</a>
+		<a href="/create" use:link>내 별명 만들기</a>
 	</div>
 </div>
 
