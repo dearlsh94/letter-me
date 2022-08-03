@@ -25,6 +25,7 @@
 	<div class="contentWrapper">
 		<div class="inputButtonWrapper">
 			<input
+				class="textInput"
 				bind:value={salt}
 				label="내 ID로 별명 찾기"
 				placeholder="내 ID로 별명 찾기"
@@ -50,15 +51,9 @@
 		margin: 5px;
 	}
 
-	input {
-		width: 80%;
-		height: 50px;
-		border-radius: 8px;
-		padding: 15px;
-	}
-
 	.goButton {
 		margin-top: 20px;
+		width: 100%;
 	}
 
 	@media (max-width: 768px) {

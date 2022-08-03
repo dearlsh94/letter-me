@@ -3,6 +3,7 @@
   import { generateSalt, encryptData, decryptData } from "../utils/cryptoUtil";
   import type { IPersonData } from "../types/index";
   import { addLink } from "../firebase";
+  import { redirectPage } from "../utils/commonUtil";
 
   let name: string = "";
   let salt: string = "";
@@ -51,6 +52,10 @@
     // we can notifi by event or storage about copy status
     valueCopy = null;
   };
+
+  const moveMyLink = () => {
+    redirectPage("/");
+  };
 </script>
 
 <div class="bodyWrapper">
@@ -58,11 +63,19 @@
     <h1>내 별명지 만들기</h1>
   </div>
   <div class="contentWrapper">
-    {#if salt !== ""}
+    {#if salt === ""}
       <div class="inputButtonWrapper">
-        <input bind:value={name} label="내 이름은" placeholder="내 이름은" />
+        <input
+          class="textInput"
+          bind:value={name}
+          label="내 이름은"
+          placeholder="내 이름은"
+        />
         <button class="button-6" on:click={createUrl}>생성</button>
       </div>
+      <button class="button-6 goButton" on:click={moveMyLink}
+        >내 별명 찾으러가기</button
+      >
     {:else}
       <div class="textWrapper">
         <span> 친구들에게 아래 버튼으로 복사한 주소를 전달해주세요! </span>
@@ -119,12 +132,10 @@
     width: 100%;
   }
 
-  input {
-    width: 80%;
-    height: 50px;
-    border-radius: 8px;
-    padding: 15px;
-  }
+	.goButton {
+		margin-top: 20px;
+		width: 100%;
+	}
 
   p {
     margin: 0px;
