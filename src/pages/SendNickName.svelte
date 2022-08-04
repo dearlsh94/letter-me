@@ -61,7 +61,7 @@
       <div class="inputFromWrapper">
         너의
         <input bind:value={fromId} label="누구" placeholder="누구" />
-        로부터
+         (으)로부터
       </div>
     </div>
     <button class="button-6 sendButton" on:click={send}>별명지 보내기</button>
