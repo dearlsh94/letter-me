@@ -1,0 +1,20 @@
+[debug] [2022-08-04T07:08:54.199Z] ----------------------------------------------------------------------
+[debug] [2022-08-04T07:08:54.201Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-08-04T07:08:54.201Z] CLI Version:   11.4.2
+[debug] [2022-08-04T07:08:54.201Z] Platform:      darwin
+[debug] [2022-08-04T07:08:54.201Z] Node Version:  v16.16.0
+[debug] [2022-08-04T07:08:54.203Z] Time:          Thu Aug 04 2022 16:08:54 GMT+0900 (대한민국 표준시)
+[debug] [2022-08-04T07:08:54.203Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-08-04T07:08:54.272Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-08-04T07:08:54.273Z] > authorizing via signed-in user (dearlsh94@gmail.com)
+[debug] [2022-08-04T07:08:54.273Z] [iam] checking project project-wyw for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2022-08-04T07:08:54.276Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-wyw:testIamPermissions [none]
+[debug] [2022-08-04T07:08:54.276Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-wyw:testIamPermissions x-goog-quota-user=projects/project-wyw
+[debug] [2022-08-04T07:08:54.276Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-wyw:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2022-08-04T07:08:54.783Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-wyw:testIamPermissions 200
+[debug] [2022-08-04T07:08:54.783Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-wyw:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2022-08-04T07:08:54.784Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/project-wyw [none]
+[debug] [2022-08-04T07:08:55.217Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/project-wyw 200
+[debug] [2022-08-04T07:08:55.217Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/project-wyw {"projectId":"project-wyw","projectNumber":"59035339395","displayName":"project-wyw","name":"projects/project-wyw","resources":{"hostingSite":"project-wyw","realtimeDatabaseInstance":"project-wyw-default-rtdb","storageBucket":"project-wyw.appspot.com","locationId":"asia-east2"},"state":"ACTIVE","etag":"1_00fd1726-d24f-4766-8233-bd965dd6c843"}
+[debug] [2022-08-04T07:08:55.217Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/project-wyw [none]

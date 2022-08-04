@@ -52,7 +52,7 @@ export const addNickNameCount = async () => {
   set(ref(db, 'infos/'), data)
 }
 
-export const addLink = (salt: string, data: any) => {
+export const addLink = (salt: string, data: IPersonData) => {
   const db = getDatabase();
   const createData = {
     ...data,
@@ -60,6 +60,10 @@ export const addLink = (salt: string, data: any) => {
   }
 
   set(ref(db, 'links/' + salt), createData);
+  set(ref(db, 'users/' + data.name), {
+    salt: createData.salt,
+    createData: createData.createdDate
+  });
   addUserCount();
 }
 

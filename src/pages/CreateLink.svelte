@@ -23,8 +23,6 @@
     data.encrypted = encrypted;
     data.myLink = `${document.location.origin}/#/my/${encrypted}`;
 
-    console.log(data);
-
     // NOTE Firebase Add
     addLink(salt, data);
   };
