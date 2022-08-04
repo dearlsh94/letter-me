@@ -1,6 +1,6 @@
 <script lang="ts">
   import { tick } from "svelte";
-  import { generateSalt, encryptData, decryptData } from "../utils/cryptoUtil";
+  import { generateSalt } from "../utils/cryptoUtil";
   import type { IPersonData } from "../types/index";
   import { addLink } from "../firebase";
   import { redirectPage } from "../utils/commonUtil";
@@ -23,9 +23,6 @@
       salt,
       sendLink,
     };
-
-    const encrypted = encryptData(data);
-    data.encrypted = encrypted;
     data.myLink = `${document.location.origin}/#/my/${salt}`;
 
     // NOTE Firebase Add
