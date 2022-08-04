@@ -20,6 +20,9 @@
     console.log(person);
     if (person) {
       name = person.name;
+    } else {
+      alert("존재하지 않는 별명함 ID예요.");
+			redirectPage("/");
     }
   };
 

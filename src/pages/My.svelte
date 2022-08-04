@@ -17,7 +17,7 @@
 		person = await getPersonBySalt(params.salt);
 
 		if (person === null) {
-			alert("존재하지 않는 ID예요.");
+			alert("존재하지 않는 별명함 ID예요.");
 			redirectPage("/");
 		}
 	};
