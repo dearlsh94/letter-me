@@ -85,8 +85,9 @@
             >ID를 잊어버리시면 다시 찾으실 수 없으니
           </span>
         </p>
-        <span> 나만 볼 수 있는 곳에 메모해두시길 권장드려요. </span>
-        <span>
+        <span> 나만 볼 수 있는 곳에 메모해두시길 권장드려요.</span>
+        <span>지금 화면 캡쳐도 좋아요 !</span>
+        <span class="paddingText">
           (내 ID : {salt})
         </span>
         <div class="buttonWrapper">
@@ -136,6 +137,10 @@
   .goButton {
     margin-top: 20px;
     width: 100%;
+  }
+
+  .paddingText {
+    padding: 5px 0px
   }
 
   p {

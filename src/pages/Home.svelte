@@ -18,7 +18,8 @@
 
 <div class="bodyWrapper">
 	<div class="titleWrapper">
-		<h1>우당탕탕 내 별명을 지어줘!</h1>
+		<h3>우당탕탕</h3>
+		<h1>내 별명을 지어줘!</h1>
 		<h4>WooDangTangTang, What's My Nickname ?</h4>
 	</div>
 
@@ -44,6 +45,11 @@
 		font-size: 4rem;
 		font-weight: 400;
 		text-align: center;
+	}
+
+	h3 {
+		padding: 0px;
+		margin: 5px;
 	}
 
 	h4 {

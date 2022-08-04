@@ -1,7 +1,7 @@
 export interface INickName {
   nickName: string,
   reason: string,
-  fromId: number
+  fromId: string
 }
 
 export interface IPersonData {

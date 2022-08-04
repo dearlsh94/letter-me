@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { IPersonData } from "../types/index";
+  import type { INickName, IPersonData } from "../types/index";
   import { getPersonBySalt, sendNickName } from "../firebase";
   import { redirectPage } from "../utils/commonUtil";
 
@@ -27,7 +27,7 @@
 
   const send = () => {
     console.log("run send");
-    const data = {
+    const data: INickName = {
       nickName,
       reason,
       fromId,

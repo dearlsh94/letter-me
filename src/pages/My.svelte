@@ -9,7 +9,7 @@
 		salt: string;
 	}
 	export let params: IParam = {
-		salt: "b3ffcf78536332da53f359f3239322c6",
+		salt: "",
 	};
 	let person: IPersonData | null = null;
 
@@ -20,8 +20,6 @@
 			alert("존재하지 않는 ID예요.");
 			redirectPage("/");
 		}
-
-		console.log(person);
 	};
 
 	if (params.salt !== "") {
@@ -40,7 +38,7 @@
 			const successful = document.execCommand("copy");
 			if (successful) {
 				console.log(`Copying text was successful : ${valueCopy}`);
-				alert("클립보드에 내 별명지 작성 주소를 복사했어요!");
+				alert("클립보드에 별명지 작성 주소를 복사했어요!");
 			} else {
 				console.log("Copying text was unsuccessful");
 				alert("Oops! 복사에 실패했어요. 새로고침 후 다시 시도해주세요.");

@@ -6,13 +6,13 @@
 
 <div class="cardWrapper">
   <p>
-    너는 <span class="boldText">{nickName.nickName}</span>야.
+    너는 <span class="boldText">{nickName.nickName}</span> (이)야.
   </p>
   <p>
     왜냐하면 <span>{nickName.reason}</span>
   </p>
   <p class="rightText">
-    너의 <span>{nickName.fromId}</span>로부터.
+    너의 <span>{nickName.fromId}</span> (으)로부터.
   </p>
 </div>
 

@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, set, get, child, push, update } from "firebase/database";
+import { getDatabase, ref, set, get, child, push } from "firebase/database";
 import { FIREBASE_CONFIG } from './constants';
-import type { IInfoCount, IPersonData } from "./types";
+import type { IInfoCount, IPersonData, INickName } from "./types";
 
 // Initialize Firebase
 const app = initializeApp(FIREBASE_CONFIG);
@@ -58,19 +58,17 @@ export const addLink = (salt: string, data: any) => {
     ...data,
     createdDate: Date.now()
   }
-  console.log(createData);
 
   set(ref(db, 'links/' + salt), createData);
   addUserCount();
 }
 
-export const sendNickName = (salt: string, data: any) => {
+export const sendNickName = (salt: string, data: INickName) => {
   const db = getDatabase();
   const createData = {
     ...data,
     createdDate: Date.now()
   }
-  console.log(createData);
 
   push(ref(db, 'links/' + salt + '/nickNames/'), createData);
   addNickNameCount();
@@ -82,7 +80,6 @@ export const getPersonBySalt = async (salt: string): Promise<IPersonData | null>
     const snapshot = await get(child(dbRef, `links/${salt}`))
     if (snapshot.exists()) {
       const res = snapshot.val()
-      console.log(res);
 
       const person: IPersonData = {
         ...res
