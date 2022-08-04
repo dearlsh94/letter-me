@@ -26,7 +26,7 @@
 
     const encrypted = encryptData(data);
     data.encrypted = encrypted;
-    data.myLink = `${document.location.origin}/#/my/${encrypted}`;
+    data.myLink = `${document.location.origin}/#/my/${salt}`;
 
     // NOTE Firebase Add
     addLink(salt, data);
