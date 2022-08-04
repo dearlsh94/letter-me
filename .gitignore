@@ -6,3 +6,5 @@ constants.ts
 .firebaserc
 database.rules.json
 firebase.json
+
+.github
