@@ -75,7 +75,7 @@
         <button class="button-6" on:click={createUrl}>만들기</button>
       </div>
       <button class="button-6 goButton" on:click={moveMyLink}
-        >내 별명 찾으러가기</button
+        >내 별명함 찾으러가기</button
       >
     {:else}
       <div class="textWrapper">
@@ -91,13 +91,13 @@
         </span>
         <div class="buttonWrapper">
           <button class="button-6 copyButton" on:click={() => copyLink('link')}>
-            주소 복사하기
+            별명지 작성 주소 복사하기
           </button>
           {#if valueCopy != null}
             <textarea bind:this={areaDom}>{valueCopy}</textarea>
           {/if}
           <button class="button-6 copyButton" on:click={() => copyLink('id')}>
-            ID 복사하기
+            내 ID 복사하기
           </button>
         </div>
       </div>
@@ -108,7 +108,7 @@
 <style>
   h1 {
     color: blue;
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: 400;
     text-align: center;
   }

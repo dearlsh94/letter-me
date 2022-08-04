@@ -64,7 +64,7 @@
         로부터
       </div>
     </div>
-    <button class="button-6 sendButton" on:click={send}>보내기</button>
+    <button class="button-6 sendButton" on:click={send}>별명지 보내기</button>
   </div>
 </div>
 

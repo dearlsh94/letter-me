@@ -18,8 +18,8 @@
 
 <div class="bodyWrapper">
 	<div class="titleWrapper">
-		<h1>내 별명을 지어줘 !</h1>
-		<h4>What's My Nickname ?</h4>
+		<h1>우당탕탕 내 별명을 지어줘!</h1>
+		<h4>WooDangTangTang, What's My Nickname ?</h4>
 	</div>
 
 	<div class="contentWrapper">
@@ -27,13 +27,13 @@
 			<input
 				class="textInput"
 				bind:value={salt}
-				label="ID로 별명 찾기"
-				placeholder="ID로 별명 찾기"
+				label="ID로 별명함 찾기"
+				placeholder="ID로 별명함 찾기"
 			/>
-			<button class="button-6" on:click={searchId}>별명 찾기</button>
+			<button class="button-6" on:click={searchId}>별명함 찾기</button>
 		</div>
 		<button class="button-6 goButton" on:click={moveCreateLink}
-			>별명지 만들러가기</button
+			>별명함 만들러가기</button
 		>
 	</div>
 </div>
@@ -41,7 +41,7 @@
 <style>
 	h1 {
 		color: blue;
-		font-size: 4.5rem;
+		font-size: 4rem;
 		font-weight: 400;
 		text-align: center;
 	}

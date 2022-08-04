@@ -61,7 +61,7 @@
 			<h1>별명들</h1>
 			<h4>총 {person?.nickNames?.length}개의 별명이 있어요.</h4>
 			<span class="copyText" on:click={copyLink}>
-				내 별명지 작성 주소 복사하기
+				별명지 작성 주소 복사하기
 			</span>
 			{#if valueCopy != null}
 				<textarea bind:this={areaDom}>{valueCopy}</textarea>

@@ -20,10 +20,10 @@
 <div class="footerWrapper">
   <div class="infoWrapper">
     <p class="infoText">
-      {infoCount.userCount}개의 별명지가 만들어졌어요.
+      {infoCount.userCount}개의 별명함이 만들어졌어요.
     </p>
     <p class="infoText">
-      {infoCount.nickNameCount}개의 별명이 지어졌어요.
+      {infoCount.nickNameCount}개의 별명지가 보내졌어요.
     </p>
   </div>
   <div class="copyrightWrapper">
