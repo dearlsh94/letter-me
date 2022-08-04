@@ -30,6 +30,22 @@
 
   const send = () => {
     console.log("run send");
+
+    if (!nickName || nickName === "") {
+      alert("별명을 입력해주세요 !")
+      return ;
+    }
+
+    if (!reason || reason === "") {
+      alert("이유를 입력해주세요 !")
+      return ;
+    }
+
+    if (!fromId || fromId === "") {
+      alert("보내는 이의 이름을 입력해주세요 !")
+      return
+    }
+
     const data: INickName = {
       nickName,
       reason,
