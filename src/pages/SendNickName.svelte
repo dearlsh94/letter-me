@@ -54,7 +54,7 @@
 
     sendNickName(salt, data);
 
-    alert("내 친구에게 별명을 보냈어요!");
+    alert("내 친구에게 별명을 보냈어요! 나도 별명함을 만들어볼까요 ?");
 
     redirectPage("/");
   };
