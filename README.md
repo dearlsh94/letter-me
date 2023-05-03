@@ -1,5 +1,5 @@
 # WooDangTangTang
-## Give me a my nickname
+## Name me a nickname
 
 Ever wonder what other people call you ?
 
