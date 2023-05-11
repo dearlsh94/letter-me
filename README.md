@@ -7,4 +7,4 @@ Create your own nickname box and share the link.
 Your anonymous friends will give you a nickname.
 
 
-Go to WooDangTangTag(https://woodangtangtang.com)
+Go to [Name Me](https://nameme.treefeely.com/)
