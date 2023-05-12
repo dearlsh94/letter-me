@@ -45,11 +45,6 @@
     text-align: center;
   }
 
-  h3 {
-    padding: 0px;
-    margin: 5px;
-  }
-
   h4 {
     padding: 0px;
     margin: 5px;

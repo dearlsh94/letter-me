@@ -9,6 +9,7 @@
     src="/static/icons/icon-blue-whale-512.png"
     alt="whale-logo"
     on:click={moveHome}
+    on:keypress={moveHome}
   />
 </div>
 
