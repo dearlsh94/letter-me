@@ -39,7 +39,7 @@
         alert("클립보드에 별명지 작성 주소를 복사했어요!");
       } else {
         console.log("Copying text was unsuccessful");
-        alert("Oops! 복사에 실패했어요. 새로고침 후 다시 시도해주세요.");
+        alert("복사에 실패했어요. 새로고침 후 다시 시도해주세요.");
       }
     } catch (err) {
       console.log("Oops, unable to copy");
