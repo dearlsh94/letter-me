@@ -22,7 +22,7 @@
       name = person.name;
     } else {
       alert("존재하지 않는 별명함 ID예요.");
-			redirectPage("/");
+      redirectPage("/");
     }
   };
 
@@ -32,18 +32,18 @@
     console.log("run send");
 
     if (!nickName || nickName === "") {
-      alert("별명을 입력해주세요 !")
-      return ;
+      alert("별명을 입력해주세요 !");
+      return;
     }
 
     if (!reason || reason === "") {
-      alert("이유를 입력해주세요 !")
-      return ;
+      alert("이유를 입력해주세요 !");
+      return;
     }
 
     if (!fromId || fromId === "") {
-      alert("보내는 이의 이름을 입력해주세요 !")
-      return
+      alert("보내는 이의 이름을 입력해주세요 !");
+      return;
     }
 
     const data: INickName = {
@@ -67,20 +67,15 @@
   <div class="contentWrapper">
     <div class="inputBox">
       <div class="inputNickNameWrapper">
-        <input bind:value={nickName} label="별명" placeholder="별명" /> (이)야
+        <input bind:value={nickName} placeholder="별명" /> (이)야
       </div>
       <div class="inputResasonWrapper">
-        <input
-          class="fullInput"
-          bind:value={reason}
-          label="이유"
-          placeholder="이유"
-        /> (이)니까.
+        <input class="fullInput" bind:value={reason} placeholder="이유" /> (이)니까.
       </div>
       <div class="inputFromWrapper">
         너의
-        <input bind:value={fromId} label="누구" placeholder="누구" />
-         (으)로부터
+        <input bind:value={fromId} placeholder="누구" />
+        (으)로부터
       </div>
     </div>
     <button class="button-6 sendButton" on:click={send}>별명지 보내기</button>

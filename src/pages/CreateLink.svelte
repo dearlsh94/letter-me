@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { tick } from "svelte";
   import { generateSalt } from "../utils/cryptoUtil";
   import type { IPersonData } from "../types/index";
   import { addLink } from "../firebase";
@@ -11,8 +10,8 @@
 
   const createUrl = () => {
     if (!name || name === "") {
-      alert("이름을 입력해주세요 !")
-      return ;
+      alert("이름을 입력해주세요 !");
+      return;
     }
 
     salt = generateSalt();
@@ -32,9 +31,8 @@
   // NOTE --- copy link
   let valueCopy: string | null = null;
   let areaDom: any;
-  const copyLink = async (type: 'link' | 'id') => {
-    valueCopy = type === 'link' ? sendLink : type === 'id' ? salt : '';
-    await tick();
+  const copyLink = async (type: "link" | "id") => {
+    valueCopy = type === "link" ? sendLink : type === "id" ? salt : "";
     areaDom.focus();
     areaDom.select();
     try {
@@ -69,7 +67,6 @@
         <input
           class="textInput"
           bind:value={name}
-          label="내 이름은"
           placeholder="내 이름은"
         />
         <button class="button-6" on:click={createUrl}>만들기</button>
@@ -91,13 +88,13 @@
           (내 ID : {salt})
         </span>
         <div class="buttonWrapper">
-          <button class="button-6 copyButton" on:click={() => copyLink('link')}>
+          <button class="button-6 copyButton" on:click={() => copyLink("link")}>
             별명지 작성 주소 복사하기
           </button>
           {#if valueCopy != null}
             <textarea bind:this={areaDom}>{valueCopy}</textarea>
           {/if}
-          <button class="button-6 copyButton" on:click={() => copyLink('id')}>
+          <button class="button-6 copyButton" on:click={() => copyLink("id")}>
             내 ID 복사하기
           </button>
         </div>
@@ -140,7 +137,7 @@
   }
 
   .paddingText {
-    padding: 5px 0px
+    padding: 5px 0px;
   }
 
   p {
