@@ -18,6 +18,7 @@ So inspired by the characters in the show, i decided to develop this site.
 - Svelte(v3.31.2)
 - Typescript
 - Firebase Realtime Database
+- Firebase Hosting
 <br/>
 
 ## Set `./src/constants.ts`
