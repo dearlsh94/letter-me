@@ -3,8 +3,6 @@ node_modules
 public/build/bundle.*
 
 constants.ts
-.firebaserc
-database.rules.json
-firebase.json
 
 .github
+.firebase

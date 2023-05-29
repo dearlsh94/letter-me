@@ -23,7 +23,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack serve --content-base public",
-    "validate": "svelte-check"
+    "validate": "svelte-check",
+    "hosting": "npm install && npm run build && firebase deploy"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
