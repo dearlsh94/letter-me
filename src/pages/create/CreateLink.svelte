@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { generateSalt } from "../utils/cryptoUtil";
-  import type { IPersonData } from "../types/index";
-  import { addLink } from "../firebase";
-  import { redirectPage } from "../utils/commonUtil";
+  import { generateSalt } from "../../utils/cryptoUtil";
+  import type { IPersonData } from "../../types/index";
+  import { addLink } from "../../firebase";
+  import { redirectPage } from "../../utils/commonUtil";
 
   let name: string = "";
   let salt: string = "";

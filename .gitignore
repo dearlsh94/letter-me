@@ -2,7 +2,6 @@
 node_modules
 public/build/bundle.*
 
-constants.ts
-
 .github
 .firebase
+.env*

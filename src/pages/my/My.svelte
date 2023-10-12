@@ -1,8 +1,8 @@
 <script lang="ts">
-  import NickNameCard from "../components/NickNameCard.svelte";
-  import type { IPersonData } from "../types/index";
-  import { getPersonBySalt } from "../firebase";
-  import { redirectPage } from "../utils/commonUtil";
+  import NickNameCard from "../../components/NickNameCard.svelte";
+  import type { IPersonData } from "../../types/index";
+  import { getPersonBySalt } from "../../firebase";
+  import { redirectPage } from "../../utils/commonUtil";
 
   interface IParam {
     salt: string;

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { INickName, IPersonData } from "../types/index";
-  import { getPersonBySalt, sendNickName } from "../firebase";
-  import { redirectPage } from "../utils/commonUtil";
+  import type { INickName, IPersonData } from "../../types/index";
+  import { getPersonBySalt, sendNickName } from "../../firebase";
+  import { redirectPage } from "../../utils/commonUtil";
 
   interface IParam {
     salt: string;
