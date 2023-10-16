@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { redirectPage } from '../utils/commonUtil';
 	let salt: string = '';
 
 	const searchId = () => {
@@ -8,18 +7,17 @@
 			return;
 		}
 
-		redirectPage(`/my/${salt}`);
+		location.href = `/my/${salt}`;
 	};
 
 	const moveCreateLink = () => {
-		redirectPage(`/create`);
+		location.href = '/letter-box';
 	};
 </script>
 
 <div class="bodyWrapper">
 	<div class="titleWrapper">
-		<h1>내 별명을 지어줘!</h1>
-		<h4>Letter Me ?</h4>
+		<h1>Letter Me</h1>
 	</div>
 
 	<div class="contentWrapper">
@@ -27,24 +25,17 @@
 			<input
 				class="textInput"
 				bind:value={salt}
-				placeholder="ID로 별명함 찾기"
+				placeholder="ID로 편지함 찾기"
 			/>
-			<button class="button-6" on:click={searchId}>별명함 찾기</button>
+			<button class="button-6" on:click={searchId}>편지함 찾기</button>
 		</div>
 		<button class="button-6 goButton" on:click={moveCreateLink}
-			>별명함 만들러가기</button
+			>편지함 만들러가기</button
 		>
 	</div>
 </div>
 
 <style>
-	h1 {
-		color: blue;
-		font-size: 4rem;
-		font-weight: 400;
-		text-align: center;
-	}
-
 	h4 {
 		padding: 0px;
 		margin: 5px;
@@ -56,9 +47,6 @@
 	}
 
 	@media (max-width: 768px) {
-		h1 {
-			font-size: 2rem;
-		}
 
 		input {
 			width: 100%;

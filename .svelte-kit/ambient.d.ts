@@ -27,6 +27,7 @@
  */
 declare module '$env/static/private' {
 	export const VITE_ENV: string;
+	export const VITE_ENCRYPT_KEY: string;
 	export const VITE_FB_API: string;
 	export const VITE_FB_ID: string;
 	export const VITE_FB_MESSAGE_SENDER_ID: string;
@@ -122,7 +123,6 @@ declare module '$env/static/private' {
 	export const npm_node_execpath: string;
 	export const npm_config_version_tag_prefix: string;
 	export const NODE_ENV: string;
-	export const VITE_USER_NODE_ENV: string;
 }
 
 /**
@@ -153,6 +153,7 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		VITE_ENV: string;
+		VITE_ENCRYPT_KEY: string;
 		VITE_FB_API: string;
 		VITE_FB_ID: string;
 		VITE_FB_MESSAGE_SENDER_ID: string;
@@ -248,7 +249,6 @@ declare module '$env/dynamic/private' {
 		npm_node_execpath: string;
 		npm_config_version_tag_prefix: string;
 		NODE_ENV: string;
-		VITE_USER_NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}

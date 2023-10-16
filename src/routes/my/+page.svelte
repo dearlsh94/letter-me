@@ -16,7 +16,7 @@
     person = await getPersonBySalt(params.salt);
 
     if (person === null) {
-      alert("존재하지 않는 별명함 ID예요.");
+      alert("존재하지 않는 편지함 ID예요.");
       redirectPage("/");
     }
   };
@@ -36,7 +36,7 @@
       const successful = document.execCommand("copy");
       if (successful) {
         console.log(`Copying text was successful : ${valueCopy}`);
-        alert("클립보드에 별명지 작성 주소를 복사했어요!");
+        alert("클립보드에 편지함 작성 주소를 복사했어요!");
       } else {
         console.log("Copying text was unsuccessful");
         alert("복사에 실패했어요. 새로고침 후 다시 시도해주세요.");
@@ -57,7 +57,7 @@
       <h1>별명들</h1>
       <h4>총 {person?.nickNames?.length}개의 별명이 있어요.</h4>
       <span class="copyText" on:click={copyLink} on:keypress={copyLink}>
-        별명지 작성 주소 복사하기
+        편지함 작성 주소 복사하기
       </span>
       {#if valueCopy != null}
         <textarea bind:this={areaDom}>{valueCopy}</textarea>
@@ -80,12 +80,6 @@
 </div>
 
 <style>
-  h1 {
-    color: blue;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
 
   .copyText {
     text-decoration: underline;

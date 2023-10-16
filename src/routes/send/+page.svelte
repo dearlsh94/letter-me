@@ -21,7 +21,7 @@
     if (person) {
       name = person.name;
     } else {
-      alert("존재하지 않는 별명함 ID예요.");
+      alert("존재하지 않는 편지함 ID예요.");
       redirectPage("/");
     }
   };
@@ -54,7 +54,7 @@
 
     sendNickName(salt, data);
 
-    alert("내 친구에게 별명을 보냈어요! 나도 별명함을 만들어볼까요 ?");
+    alert("내 친구에게 별명을 보냈어요! 나도 편지함을 만들어볼까요 ?");
 
     redirectPage("/");
   };
@@ -78,14 +78,11 @@
         (으)로부터
       </div>
     </div>
-    <button class="button-6 sendButton" on:click={send}>별명지 보내기</button>
+    <button class="button-6 sendButton" on:click={send}>편지함 보내기</button>
   </div>
 </div>
 
 <style>
-  h1 {
-    color: blue;
-  }
 
   input {
     padding: 3px 8px;
