@@ -1,9 +1,8 @@
 import { AES } from 'crypto-es/lib/aes';
 import { Utf8 } from 'crypto-es/lib/core';
-import CryptoES from 'crypto-es';
 
 export const generateSalt = () => {
-	return CryptoES.lib.WordArray.create(new ArrayBuffer(8));
+	return `${new Date().getTime()}${Math.floor(Math.random() * 1000)}`;
 };
 
 export const encryptData = (data: any) => {
