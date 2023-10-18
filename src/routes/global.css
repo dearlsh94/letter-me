@@ -99,12 +99,6 @@ li {
 	margin: 10px;
 }
 
-h1 {
-	margin: 0;
-	font-size: 2rem;
-	font-weight: 700;
-}
-
 /* ==================== */
 
 .bodyWrapper {
@@ -154,15 +148,6 @@ h1 {
 	.inputButtonWrapper {
 		display: block;
 	}
-}
-
-.textInput {
-	width: 80%;
-	height: 50px;
-	border-radius: 8px;
-	padding: 15px;
-	flex: 1;
-	margin-right: 5px;
 }
 
 .redText {
