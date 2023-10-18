@@ -1,10 +1,22 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { getLinkCount } from '../firebase';
+	import type { IInfoCount } from '../types';
 	import './global.css';
+
+	let infoCount: IInfoCount = {
+		userCount: 0,
+		nickNameCount: 0
+	};
+
+	onMount(async () => {
+		infoCount = await getLinkCount();
+	});
 </script>
 
 <div class="app">
 	<header>
-		<div class='logo-box'>Letter Me</div>
+		<div class="logo-box">Letter Me</div>
 		<nav>
 			<ul>
 				<li>Home</li>
@@ -16,6 +28,14 @@
 		<slot />
 	</main>
 	<footer>
+		<div class="info-box">
+			<p>
+				{infoCount.userCount}개의 편지함이 만들어졌어요.
+			</p>
+			<p>
+				{infoCount.nickNameCount}개의 편지가 보내졌어요.
+			</p>
+		</div>
 		<p>
 			visit <a href="https://github.com/dearlsh94/letter-me">Github</a>
 		</p>
@@ -32,8 +52,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 60px;
-		padding: 0px 12px;
+		height: 4rem;
+		padding: 0px 1rem;
 		border-bottom: 1px solid #e5e5e5;
 	}
 	header nav ul {
@@ -50,7 +70,7 @@
 		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
-		row-gap: 40px;
+		row-gap: 3rem;
 	}
 
 	footer {
@@ -58,16 +78,20 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 12px;
+		padding: 1rem;
+		row-gap: 1rem;
+	}
+	footer .info-box {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+	footer .info-box p {
+		font-size: 0.75rem;
 	}
 
 	footer a {
 		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
 	}
 </style>
