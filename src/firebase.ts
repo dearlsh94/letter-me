@@ -67,7 +67,7 @@ export const addLink = (salt: string, data: IPersonData) => {
 	set(ref(db, 'links/' + salt), createData);
 	set(ref(db, 'users/' + data.name), {
 		salt: createData.salt,
-		createdData: createData.createdDate
+		createdDate: createData.createdDate
 	});
 	addUserCount();
 };

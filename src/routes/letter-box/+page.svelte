@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { generateSalt } from '../../utils/cryptoUtil';
 	import type { IPersonData } from '../../types/index';
-	// import { addLink } from '../../firebase';
+	import Head1 from '../../components/common/Head1.svelte';
+	import InputTextButton from '../../components/common/InputTextButton.svelte';
+	import { addLink } from '../../firebase';
 
 	let name: string = '';
-	let salt: string = '';
+	let salt = '';
 	let sendLink: string = '';
 
 	const createUrl = () => {
@@ -14,8 +16,8 @@
 		}
 
 		salt = generateSalt();
-		sendLink = `${document.location.origin}/#/send/${salt}`;
 
+		sendLink = `${document.location.origin}/#/send/${salt}`;
 		const data: IPersonData = {
 			name,
 			salt,
@@ -23,8 +25,7 @@
 		};
 		data.myLink = `${document.location.origin}/#/my/${salt}`;
 
-		// TODO Firebase Add
-		// addLink(salt, data);
+		addLink(salt, data);
 	};
 
 	// NOTE --- copy link
@@ -50,56 +51,46 @@
 		// we can notifi by event or storage about copy status
 		valueCopy = null;
 	};
-
-	const moveMyLink = () => {
-		location.href = '/';
-	};
 </script>
 
-<div class="bodyWrapper">
-	<div class="titleWrapper">
-		<h1>내 편지함 만들기</h1>
+<Head1 center={true}>내 편지함 만들기</Head1>
+{#if salt === ''}
+	<InputTextButton
+		bind:value={name}
+		placeholder={'To. '}
+		buttonText="만들기"
+		handleClick={createUrl}
+	/>
+	<div>
+		<span>이미 만든 편지함이 있다면?</span>
+		<a href="/">내 편지함 찾기</a>
 	</div>
-	<div class="contentWrapper">
-		{#if salt === ''}
-			<div class="inputButtonWrapper">
-				<input class="textInput" bind:value={name} placeholder="To. " />
-				<button class="button-6" on:click={createUrl}>만들기</button>
-			</div>
-			<button class="button-6 goButton" on:click={moveMyLink}
-				>내 편지함 찾으러가기</button
-			>
-		{:else}
-			<div class="textWrapper">
-				<span> 친구들에게 아래 버튼으로 복사한 주소를 전달해주세요! </span>
-				<p>
-					특히 <span class="redText"
-						>ID를 잊어버리시면 다시 찾으실 수 없으니
-					</span>
-				</p>
-				<span> 나만 볼 수 있는 곳에 메모해두시길 권장드려요.</span>
-				<span>지금 화면 캡쳐도 좋아요 !</span>
-				<span class="paddingText">
-					(내 ID : {salt})
-				</span>
-				<div class="buttonWrapper">
-					<button class="button-6 copyButton" on:click={() => copyLink('link')}>
-						편지함 작성 주소 복사하기
-					</button>
-					{#if valueCopy != null}
-						<textarea bind:this={areaDom}>{valueCopy}</textarea>
-					{/if}
-					<button class="button-6 copyButton" on:click={() => copyLink('id')}>
-						내 ID 복사하기
-					</button>
-				</div>
-			</div>
-		{/if}
+{:else}
+	<div class="textWrapper">
+		<span> 친구들에게 아래 버튼으로 복사한 주소를 전달해주세요! </span>
+		<p>
+			특히 <span class="redText">ID를 잊어버리시면 다시 찾으실 수 없으니 </span>
+		</p>
+		<span> 나만 볼 수 있는 곳에 메모해두시길 권장드려요.</span>
+		<span>지금 화면 캡쳐도 좋아요 !</span>
+		<span class="paddingText">
+			(내 ID : {salt})
+		</span>
+		<div class="buttonWrapper">
+			<button class="button-6 copyButton" on:click={() => copyLink('link')}>
+				편지함 작성 주소 복사하기
+			</button>
+			{#if valueCopy != null}
+				<textarea bind:this={areaDom}>{valueCopy}</textarea>
+			{/if}
+			<button class="button-6 copyButton" on:click={() => copyLink('id')}>
+				내 ID 복사하기
+			</button>
+		</div>
 	</div>
-</div>
+{/if}
 
 <style>
-
 	.textWrapper {
 		background-color: rgba(255, 255, 255, 0.8);
 		margin: 10px 0px;
@@ -117,11 +108,6 @@
 
 	.copyButton {
 		margin-bottom: 10px;
-		width: 100%;
-	}
-
-	.goButton {
-		margin-top: 20px;
 		width: 100%;
 	}
 
@@ -145,18 +131,5 @@
 		outline: none;
 		box-shadow: none;
 		background: transparent;
-	}
-
-	@media (max-width: 768px) {
-
-		input {
-			width: 100%;
-			padding: 10px;
-		}
-
-		button {
-			width: 100%;
-			margin-top: 5px;
-		}
 	}
 </style>
