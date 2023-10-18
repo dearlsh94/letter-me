@@ -6,7 +6,7 @@
 </script>
 
 <div class="input-text-button">
-	<input class="textInput" bind:value {placeholder} />
+	<input bind:value {placeholder} />
 	<button class="button-6" on:click={handleClick}>{buttonText}</button>
 </div>
 
@@ -23,6 +23,9 @@
 		border-radius: 8px;
 		padding: 15px;
 		flex: 1;
+	}
+	.input-text-button button {
+		min-width: 124px;
 	}
 	@media (max-width: 768px) {
 		.input-text-button input {
