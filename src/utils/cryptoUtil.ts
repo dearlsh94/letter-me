@@ -1,11 +1,13 @@
-const CryptoJS = require('crypto-js');
+import { AES } from 'crypto-es/lib/aes';
+import { Utf8 } from 'crypto-es/lib/core';
+import CryptoES from 'crypto-es';
 
 export const generateSalt = () => {
-	return CryptoJS.lib.WordArray.random(128 / 8).toString();
+	return CryptoES.lib.WordArray.create(new ArrayBuffer(8));
 };
 
 export const encryptData = (data: any) => {
-	const encrypted = CryptoJS.AES.encrypt(
+	const encrypted = AES.encrypt(
 		JSON.stringify(data),
 		import.meta.env?.VITE_ENCRYPT_KEY
 	).toString();
@@ -13,9 +15,9 @@ export const encryptData = (data: any) => {
 };
 
 export const decryptData = (encrypted: string) => {
-	const bytes = CryptoJS.AES.decrypt(
+	const bytes = AES.decrypt(
 		encrypted.replace(/_slash/gi, '/'),
 		import.meta.env?.VITE_ENCRYPT_KEY
 	);
-	return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+	return JSON.parse(bytes.toString(Utf8));
 };

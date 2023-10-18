@@ -11,7 +11,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
-		"crypto-js": "^4.1.1",
+		"crypto-es": "^2.0.4",
 		"firebase": "^9.9.1"
 	},
 	"devDependencies": {
