@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
 import { getDatabase, ref, set, get, child, push } from 'firebase/database';
-import type { IInfoCount, IPersonData, INickName } from './types';
+import type { CountSummary, IPersonData, INickName } from './types';
 
 const FIREBASE_CONFIG = {
 	apiKey: import.meta.env?.VITE_FB_API,
@@ -15,23 +14,22 @@ const FIREBASE_CONFIG = {
 
 // Initialize Firebase
 const app = initializeApp(FIREBASE_CONFIG);
-const analytics = getAnalytics(app);
 
 export const getCount = async () => {
 	const db = getDatabase();
 	const dbRef = ref(getDatabase());
 
 	try {
-		const snapshot = await get(child(dbRef, `infos`));
+		const snapshot = await get(child(dbRef, `summary`));
 		if (snapshot.exists()) {
 			return snapshot.val();
 		} else {
 			const initInfo = {
-				userCount: 0,
-				nickNameCount: 0
+				letterBoxCount: 0,
+				letterCount: 0
 			};
 
-			await set(ref(db, 'infos/'), initInfo);
+			await set(ref(db, 'summary/'), initInfo);
 			return initInfo;
 		}
 	} catch (error) {}
@@ -39,24 +37,24 @@ export const getCount = async () => {
 
 export const addUserCount = async () => {
 	const db = getDatabase();
-	const infoCount = await getCount();
+	const countSummary = await getCount();
 	const data = {
-		...infoCount,
-		userCount: infoCount.userCount + 1
+		...countSummary,
+		letterBoxCount: countSummary.letterBoxCount + 1
 	};
 
-	set(ref(db, 'infos/'), data);
+	set(ref(db, 'summary/'), data);
 };
 
 export const addNickNameCount = async () => {
 	const db = getDatabase();
-	const infoCount = await getCount();
+	const countSummary = await getCount();
 	const data = {
-		...infoCount,
-		nickNameCount: infoCount.nickNameCount + 1
+		...countSummary,
+		letterCount: countSummary.letterCount + 1
 	};
 
-	set(ref(db, 'infos/'), data);
+	set(ref(db, 'summary/'), data);
 };
 
 export const addLink = (salt: string, data: IPersonData) => {
@@ -114,20 +112,21 @@ export const getPersonBySalt = async (
 	}
 };
 
-export const getLinkCount = async (): Promise<IInfoCount | null> => {
+export const getLinkCount = async (): Promise<CountSummary> => {
 	const dbRef = ref(getDatabase());
 	try {
-		const snapshot = await get(child(dbRef, `infos`));
+		const snapshot = await get(child(dbRef, `summary`));
 		if (snapshot.exists()) {
 			const res = snapshot.val();
-
 			return res;
 		} else {
-			console.log('No data available');
-			return null;
+			throw new Error('No data available');
 		}
 	} catch (error: any) {
 		console.error(error);
-		return null;
+		return {
+			letterBoxCount: 0,
+			letterCount: 0
+		};
 	}
 };

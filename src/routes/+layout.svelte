@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { getLinkCount } from '../firebase';
-	import type { IInfoCount } from '../types';
+	import type { CountSummary } from '../types';
 	import './global.css';
 
-	let infoCount: IInfoCount = {
-		userCount: 0,
-		nickNameCount: 0
+	let countSummary: CountSummary = {
+		letterBoxCount: 0,
+		letterCount: 0
 	};
 
 	onMount(async () => {
-		infoCount = await getLinkCount();
+		countSummary = await getLinkCount();
 	});
 </script>
 
@@ -30,10 +30,10 @@
 	<footer>
 		<div class="info-box">
 			<p>
-				{infoCount.userCount}개의 편지함이 만들어졌어요.
+				{countSummary.letterBoxCount}개의 편지함이 만들어졌어요.
 			</p>
 			<p>
-				{infoCount.nickNameCount}개의 편지가 보내졌어요.
+				{countSummary.letterCount}개의 편지가 보내졌어요.
 			</p>
 		</div>
 		<p>

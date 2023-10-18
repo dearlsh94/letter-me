@@ -13,7 +13,7 @@ export interface IPersonData {
   nickNames?: INickName[]
 }
 
-export interface IInfoCount {
-  userCount: number,
-  nickNameCount: number
+export interface CountSummary {
+  letterBoxCount: number,
+  letterCount: number
 }
