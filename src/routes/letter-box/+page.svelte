@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { generateSalt } from '../../utils/cryptoUtil';
 	import type { IPersonData } from '../../types/index';
 	import Head1 from '../../components/common/Head1.svelte';
 	import InputTextButton from '../../components/common/InputTextButton.svelte';
 	import { addLink } from '../../firebase';
+	import { generateRandomUUID } from '../../utils/common';
 
 	let name: string = '';
 	let salt = '';
@@ -15,7 +15,7 @@
 			return;
 		}
 
-		salt = generateSalt();
+		salt = generateRandomUUID();
 
 		sendLink = `${document.location.origin}/send/${salt}`;
 		const data: IPersonData = {
