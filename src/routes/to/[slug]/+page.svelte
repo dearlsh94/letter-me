@@ -1,23 +1,23 @@
 <script lang="ts">
 	import type { Letter, LetterBox } from '../../../types/index';
-	import { getPersonBySalt, sendLetter } from '../../../firebase';
+	import { getLetterBoxByKey, sendLetter } from '../../../firebase';
 	import Head1 from '../../../components/common/Head1.svelte';
 	import InputTextButton from '../../../components/common/InputTextButton.svelte';
 	import TextArea from '../../../components/common/TextArea.svelte';
 
 	interface IParam {
-		salt: string;
+		key: string;
 	}
 	export let params: IParam = {
-		salt: ''
+		key: ''
 	};
-	const salt: string = params.salt;
+	const key: string = params.key;
 	let name = '';
 	let content = '';
 	let from = '';
 
 	const init = async () => {
-		const person: LetterBox | null = await getPersonBySalt(salt);
+		const person: LetterBox | null = await getLetterBoxByKey(key);
 		if (person) {
 			name = person.name;
 		} else {
@@ -28,7 +28,7 @@
 
 	init();
 
-	const send = () => {
+	const send = async () => {
 		if (!content) {
 			alert('내용을 입력해주세요!');
 			return;
@@ -44,7 +44,7 @@
 			from
 		};
 
-		sendLetter(salt, data);
+		await sendLetter(key, data);
 
 		alert('내 친구에게 별명을 보냈어요! 나도 편지함을 만들어볼까요 ?');
 

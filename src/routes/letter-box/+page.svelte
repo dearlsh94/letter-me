@@ -2,12 +2,12 @@
 	import type { LetterBox } from '../../types/index';
 	import Head1 from '../../components/common/Head1.svelte';
 	import InputTextButton from '../../components/common/InputTextButton.svelte';
-	import { addLink } from '../../firebase';
+	import { createLetterBox } from '../../firebase';
 	import { generateRandomUUID } from '../../utils/common';
 	import { countSummary } from '../../store/common';
 
 	let name: string = '';
-	let salt = '';
+	let key = '';
 
 	const createUrl = async () => {
 		if (!name || name === '') {
@@ -15,14 +15,14 @@
 			return;
 		}
 
-		salt = generateRandomUUID();
+		key = generateRandomUUID();
 
 		const data: LetterBox = {
 			name,
-			salt
+			key
 		};
 
-		await addLink(salt, data);
+		await createLetterBox(key, data);
 		countSummary.refresh();
 	};
 
@@ -47,7 +47,7 @@
 
 <Head1 center={true}>내 편지함 만들기</Head1>
 <div class="content">
-	{#if salt === ''}
+	{#if key === ''}
 		<InputTextButton
 			bind:value={name}
 			placeholder={'To. '}
@@ -74,19 +74,19 @@
 			</ul>
 			<div class="id-box">
 				<p>
-					내 Key : {salt}
+					내 Key : {key}
 				</p>
-				<a href={`https://letter.treefeely.com/to/${salt}`} target="_blank">
-					내게 오는 편지지 주소 : {`https://letter.treefeely.com/to/${salt}`}
+				<a href={`https://letter.treefeely.com/to/${key}`} target="_blank">
+					내게 오는 편지지 주소 : {`https://letter.treefeely.com/to/${key}`}
 				</a>
 			</div>
 			<div class="button-box">
-				<button class="button-6 copyButton" on:click={() => copyLink(salt)}>
+				<button class="button-6 copyButton" on:click={() => copyLink(key)}>
 					Key 복사하기
 				</button>
 				<button
 					class="button-6 copyButton"
-					on:click={() => copyLink(`https://letter.treefeely.com/to/${salt}`)}
+					on:click={() => copyLink(`https://letter.treefeely.com/to/${key}`)}
 				>
 					편지지 주소 복사하기
 				</button>

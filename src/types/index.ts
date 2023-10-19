@@ -1,15 +1,15 @@
 export interface Letter {
-  content: string,
-  from: string
+	content: string;
+	from: string;
 }
 
 export interface LetterBox {
-  name: string,
-  salt: string,
-  letters?: Letter[]
+	key: string;
+	name: string;
+	letters?: Letter[];
 }
 
 export interface CountSummary {
-  letterBoxCount: number,
-  letterCount: number
+	letterBoxCount: number;
+	letterCount: number;
 }

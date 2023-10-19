@@ -2,22 +2,22 @@
 	import Head1 from '../components/common/Head1.svelte';
 	import InputTextButton from '../components/common/InputTextButton.svelte';
 
-	let salt = '';
+	let key = '';
 
 	const searchId = () => {
-		if (!salt) {
+		if (!key) {
 			alert('ID를 입력해주세요.');
 			return;
 		}
 
-		location.href = `/my/${salt}`;
+		location.href = `/my/${key}`;
 	};
 </script>
 
 <Head1 center={true}>서로를 향한 편지 한 통, Letter Me</Head1>
 <div class="content">
 	<InputTextButton
-		bind:value={salt}
+		bind:value={key}
 		placeholder="ID로 편지함 찾기"
 		buttonText="편지함 찾기"
 		handleClick={searchId}

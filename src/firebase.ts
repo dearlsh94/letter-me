@@ -15,29 +15,35 @@ const FIREBASE_CONFIG = {
 // Initialize Firebase
 const app = initializeApp(FIREBASE_CONFIG);
 
-export const getCount = async () => {
+export const getCountSummary = async (): Promise<CountSummary> => {
 	const db = getDatabase();
 	const dbRef = ref(getDatabase());
 
 	try {
 		const snapshot = await get(child(dbRef, `summary`));
 		if (snapshot.exists()) {
-			return snapshot.val();
+			const res = snapshot.val();
+			return res;
 		} else {
 			const initInfo = {
 				letterBoxCount: 0,
 				letterCount: 0
 			};
-
 			await set(ref(db, 'summary/'), initInfo);
 			return initInfo;
 		}
-	} catch (error) {}
+	} catch (error: any) {
+		console.error(error);
+		return {
+			letterBoxCount: 0,
+			letterCount: 0
+		};
+	}
 };
 
-export const addUserCount = async () => {
+const addLetterBoxCount = async () => {
 	const db = getDatabase();
-	const countSummary = await getCount();
+	const countSummary = await getCountSummary();
 	const data = {
 		...countSummary,
 		letterBoxCount: countSummary.letterBoxCount + 1
@@ -46,9 +52,9 @@ export const addUserCount = async () => {
 	set(ref(db, 'summary/'), data);
 };
 
-export const addNickNameCount = async () => {
+const addLetterCount = async () => {
 	const db = getDatabase();
-	const countSummary = await getCount();
+	const countSummary = await getCountSummary();
 	const data = {
 		...countSummary,
 		letterCount: countSummary.letterCount + 1
@@ -57,38 +63,46 @@ export const addNickNameCount = async () => {
 	set(ref(db, 'summary/'), data);
 };
 
-export const addLink = async (salt: string, data: LetterBox) => {
+export const createLetterBox = async (key: string, data: LetterBox) => {
 	const db = getDatabase();
 	const createData = {
 		...data,
 		createdDate: Date.now()
 	};
 
-	set(ref(db, 'links/' + salt), createData);
-	set(ref(db, 'users/' + data.name), {
-		salt: createData.salt,
+	set(ref(db, 'letter-box/' + key), {
+		...data,
+		createdDate: Date.now()
+	});
+
+	set(ref(db, `users/${data.name}`), {
+		key: createData.key,
 		createdDate: createData.createdDate
 	});
-	await addUserCount();
+
+	await addLetterBoxCount();
 };
 
-export const sendLetter = (salt: string, data: Letter) => {
+export const sendLetter = async (key: string, data: Letter) => {
+	if (!key || !data.content) {
+		return false;
+	}
+
 	const db = getDatabase();
-	const createData = {
+	push(ref(db, `letter-box/${key}/letters/`), {
 		...data,
 		createdDate: Date.now()
-	};
+	});
 
-	push(ref(db, 'links/' + salt + '/letters/'), createData);
-	addNickNameCount();
+	await addLetterCount();
 };
 
-export const getPersonBySalt = async (
-	salt: string
+export const getLetterBoxByKey = async (
+	key: string
 ): Promise<LetterBox | null> => {
 	const dbRef = ref(getDatabase());
 	try {
-		const snapshot = await get(child(dbRef, `links/${salt}`));
+		const snapshot = await get(child(dbRef, `letter-box/${key}`));
 		if (snapshot.exists()) {
 			const res = snapshot.val();
 
@@ -109,24 +123,5 @@ export const getPersonBySalt = async (
 	} catch (error: any) {
 		console.error(error);
 		return null;
-	}
-};
-
-export const getLinkCount = async (): Promise<CountSummary> => {
-	const dbRef = ref(getDatabase());
-	try {
-		const snapshot = await get(child(dbRef, `summary`));
-		if (snapshot.exists()) {
-			const res = snapshot.val();
-			return res;
-		} else {
-			throw new Error('No data available');
-		}
-	} catch (error: any) {
-		console.error(error);
-		return {
-			letterBoxCount: 0,
-			letterCount: 0
-		};
 	}
 };

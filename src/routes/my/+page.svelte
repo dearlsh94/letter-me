@@ -1,19 +1,19 @@
 <script lang="ts">
   import NickNameCard from "../../components/NickNameCard.svelte";
   import type { LetterBox } from "../../types/index";
-  import { getPersonBySalt } from "../../firebase";
+  import { getLetterBoxByKey } from "../../firebase";
   import { redirectPage } from "../../utils/commonUtil";
 
   interface IParam {
-    salt: string;
+    key: string;
   }
   export let params: IParam = {
-    salt: "",
+    key: "",
   };
   let person: LetterBox | null = null;
 
   const init = async () => {
-    person = await getPersonBySalt(params.salt);
+    person = await getLetterBoxByKey(params.key);
 
     if (person === null) {
       alert("존재하지 않는 편지함 ID예요.");
@@ -21,7 +21,7 @@
     }
   };
 
-  if (params.salt !== "") {
+  if (params.key !== "") {
     init();
   }
 
@@ -29,7 +29,7 @@
   let valueCopy: string | null = null;
   let areaDom: any;
   const copyLink = async () => {
-    valueCopy = `${document.location.origin}/#/send/${params.salt}`;
+    valueCopy = `${document.location.origin}/#/send/${params.key}`;
     areaDom.focus();
     areaDom.select();
     try {
