@@ -4,12 +4,12 @@
 	import InputTextButton from '../../components/common/InputTextButton.svelte';
 	import { addLink } from '../../firebase';
 	import { generateRandomUUID } from '../../utils/common';
+	import { countSummary } from '../../store/common';
 
 	let name: string = '';
 	let salt = '';
-	let sendLink: string = '';
 
-	const createUrl = () => {
+	const createUrl = async () => {
 		if (!name || name === '') {
 			alert('이름을 입력해주세요 !');
 			return;
@@ -17,45 +17,39 @@
 
 		salt = generateRandomUUID();
 
-		sendLink = `${document.location.origin}/send/${salt}`;
 		const data: IPersonData = {
 			name,
 			salt,
-			sendLink
+			sendLink: `${document.location.origin}/send/${salt}`
 		};
 		data.myLink = `${document.location.origin}/my/${salt}`;
 
-		addLink(salt, data);
+		await addLink(salt, data);
+		countSummary.refresh();
 	};
 
-	// NOTE --- copy link
-	let valueCopy: string | null = null;
-	let areaDom: any;
-	const copyLink = async (type: 'link' | 'id') => {
-		valueCopy = type === 'link' ? sendLink : type === 'id' ? salt : '';
-		areaDom.focus();
-		areaDom.select();
+	const copyLink = async (textToCopy = '') => {
 		try {
-			const successful = document.execCommand('copy');
-			if (successful) {
-				console.log(`Copying text was successful : ${valueCopy}`);
-				alert('클립보드에 주소를 복사했어요!');
+			if (navigator.clipboard) {
+				await navigator.clipboard.writeText(textToCopy);
 			} else {
-				console.log('Copying text was unsuccessful');
-				alert('Oops! 복사에 실패했어요. 새로고침 후 다시 시도해주세요.');
+				const textField = document.createElement('textarea');
+				textField.innerText = textToCopy;
+				document.body.appendChild(textField);
+				textField.select();
+				document.execCommand('copy');
+				textField.remove();
 			}
-		} catch (err) {
-			console.log('Oops, unable to copy');
+			alert('클립보드에 복사했어요!');
+		} catch (error) {
+			alert('복사되지 않았어요.');
 		}
-
-		// we can notifi by event or storage about copy status
-		valueCopy = null;
 	};
 </script>
 
 <Head1 center={true}>내 편지함 만들기</Head1>
 <div class="content">
-	{#if salt === '' && false}
+	{#if salt === ''}
 		<InputTextButton
 			bind:value={name}
 			placeholder={'To. '}
@@ -68,7 +62,7 @@
 		</div>
 	{:else}
 		<div class="completed-box">
-			<ul class='notices-box'>
+			<ul class="notices-box">
 				<li>
 					아래 <em>내게 오는 편지지 주소</em>에서 편지를 보내면 내 편지함에서
 					확인할 수 있어요.
@@ -84,15 +78,18 @@
 				<p>
 					내 Key : {salt}
 				</p>
-				<p>
-					내게 오는 편지지 주소 :
-				</p>
+				<a href={`https://letter.treefeely.com/to/${salt}`} target="_blank">
+					내게 오는 편지지 주소 : {`https://letter.treefeely.com/to/${salt}`}
+				</a>
 			</div>
 			<div class="button-box">
-				<button class="button-6 copyButton" on:click={() => copyLink('id')}>
+				<button class="button-6 copyButton" on:click={() => copyLink(salt)}>
 					Key 복사하기
 				</button>
-				<button class="button-6 copyButton" on:click={() => copyLink('link')}>
+				<button
+					class="button-6 copyButton"
+					on:click={() => copyLink(`https://letter.treefeely.com/to/${salt}`)}
+				>
 					편지지 주소 복사하기
 				</button>
 			</div>
@@ -111,7 +108,7 @@
 		flex-direction: column;
 		row-gap: 32px;
 	}
-	.content .completed-box .notices-box{
+	.content .completed-box .notices-box {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
