@@ -6,7 +6,7 @@ export interface Letter {
 export interface LetterBox {
 	key: string;
 	name: string;
-	letters?: Letter[];
+	letters: Letter[];
 }
 
 export interface CountSummary {

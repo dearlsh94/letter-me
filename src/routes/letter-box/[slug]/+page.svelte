@@ -2,33 +2,36 @@
 	import NickNameCard from '../../../components/NickNameCard.svelte';
 	import type { LetterBox } from '../../../types/index';
 	import { getLetterBoxByKey } from '../../../firebase';
+	import { onMount } from 'svelte';
 
-	interface IParam {
-		key: string;
-	}
-	export let params: IParam = {
-		key: ''
+	export let data: {
+		slug: string;
 	};
+	const { slug } = data;
+
 	let person: LetterBox | null = null;
 
-	const init = async () => {
-		person = await getLetterBoxByKey(params.key);
+	onMount(() => {
+		if (slug) {
+			init();
+		}
+	});
 
+	const init = async () => {
+		person = await getLetterBoxByKey(slug);
+
+		console.log({ person });
 		if (person === null) {
 			alert('존재하지 않는 편지함 ID예요.');
 			location.href = '/';
 		}
 	};
 
-	if (params.key !== '') {
-		init();
-	}
-
 	// NOTE --- copy link
 	let valueCopy: string | null = null;
 	let areaDom: any;
 	const copyLink = async () => {
-		valueCopy = `${document.location.origin}/#/send/${params.key}`;
+		valueCopy = `${document.location.origin}/#/send/${slug}`;
 		areaDom.focus();
 		areaDom.select();
 		try {

@@ -12,8 +12,7 @@ const FIREBASE_CONFIG = {
 	measurementId: `${import.meta.env?.VITE_FB_MEASUREMENT_ID}`
 };
 
-// Initialize Firebase
-const app = initializeApp(FIREBASE_CONFIG);
+initializeApp(FIREBASE_CONFIG);
 
 export const getCountSummary = async (): Promise<CountSummary> => {
 	const db = getDatabase();
@@ -63,21 +62,18 @@ const addLetterCount = async () => {
 	set(ref(db, 'summary/'), data);
 };
 
-export const createLetterBox = async (key: string, data: LetterBox) => {
+export const createLetterBox = async (key = '', name = '') => {
+	if (!key || !name) {
+		return false;
+	}
+
 	const db = getDatabase();
-	const createData = {
-		...data,
-		createdDate: Date.now()
-	};
 
 	set(ref(db, 'letter-box/' + key), {
-		...data,
+		key,
+		name,
+		letters: [],
 		createdDate: Date.now()
-	});
-
-	set(ref(db, `users/${data.name}`), {
-		key: createData.key,
-		createdDate: createData.createdDate
 	});
 
 	await addLetterBoxCount();
@@ -104,20 +100,9 @@ export const getLetterBoxByKey = async (
 	try {
 		const snapshot = await get(child(dbRef, `letter-box/${key}`));
 		if (snapshot.exists()) {
-			const res = snapshot.val();
-
-			const person: LetterBox = {
-				...res
-			};
-			if (res.letters) {
-				person.letters = Object.values(res.letters);
-			} else {
-				person.letters = [];
-			}
-
-			return person;
+			return snapshot.val();
 		} else {
-			console.log('No data available');
+			console.log('Not Found');
 			return null;
 		}
 	} catch (error: any) {
