@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { INickName } from "../types/index";
+  import type { Letter } from "../types/index";
 
-  export let nickName: INickName;
+  export let nickName: Letter;
 </script>
 
 <div class="cardWrapper">

@@ -1,16 +1,12 @@
-export interface INickName {
-  nickName: string,
-  reason: string,
-  fromId: string
+export interface Letter {
+  content: string,
+  from: string
 }
 
-export interface IPersonData {
+export interface LetterBox {
   name: string,
   salt: string,
-  sendLink?: string,
-  encrypted?: string,
-  myLink?: string
-  nickNames?: INickName[]
+  letters?: Letter[]
 }
 
 export interface CountSummary {

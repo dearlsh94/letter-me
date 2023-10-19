@@ -1,6 +1,6 @@
 <script lang="ts">
   import NickNameCard from "../../components/NickNameCard.svelte";
-  import type { IPersonData } from "../../types/index";
+  import type { LetterBox } from "../../types/index";
   import { getPersonBySalt } from "../../firebase";
   import { redirectPage } from "../../utils/commonUtil";
 
@@ -10,7 +10,7 @@
   export let params: IParam = {
     salt: "",
   };
-  let person: IPersonData | null = null;
+  let person: LetterBox | null = null;
 
   const init = async () => {
     person = await getPersonBySalt(params.salt);
@@ -55,7 +55,7 @@
     <div class="titleWrapper">
       <h1>{person ? person.name : ""}의</h1>
       <h1>별명들</h1>
-      <h4>총 {person?.nickNames?.length}개의 별명이 있어요.</h4>
+      <h4>총 {person?.letters?.length}개의 별명이 있어요.</h4>
       <span class="copyText" on:click={copyLink} on:keypress={copyLink}>
         편지함 작성 주소 복사하기
       </span>
@@ -65,9 +65,9 @@
     </div>
 
     <div class="contentWrapper">
-      {#if person.nickNames}
+      {#if person.letters}
         <div class="cardsWrapper">
-          {#each person.nickNames as nickName}
+          {#each person.letters as nickName}
             <NickNameCard {nickName} />
           {/each}
         </div>

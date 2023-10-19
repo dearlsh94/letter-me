@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { IPersonData } from '../../types/index';
+	import type { LetterBox } from '../../types/index';
 	import Head1 from '../../components/common/Head1.svelte';
 	import InputTextButton from '../../components/common/InputTextButton.svelte';
 	import { addLink } from '../../firebase';
@@ -17,12 +17,10 @@
 
 		salt = generateRandomUUID();
 
-		const data: IPersonData = {
+		const data: LetterBox = {
 			name,
-			salt,
-			sendLink: `${document.location.origin}/send/${salt}`
+			salt
 		};
-		data.myLink = `${document.location.origin}/my/${salt}`;
 
 		await addLink(salt, data);
 		countSummary.refresh();

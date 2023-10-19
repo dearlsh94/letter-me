@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, get, child, push } from 'firebase/database';
-import type { CountSummary, IPersonData, INickName } from './types';
+import type { CountSummary, LetterBox, Letter } from './types';
 
 const FIREBASE_CONFIG = {
 	apiKey: import.meta.env?.VITE_FB_API,
@@ -57,7 +57,7 @@ export const addNickNameCount = async () => {
 	set(ref(db, 'summary/'), data);
 };
 
-export const addLink = async (salt: string, data: IPersonData) => {
+export const addLink = async (salt: string, data: LetterBox) => {
 	const db = getDatabase();
 	const createData = {
 		...data,
@@ -72,33 +72,33 @@ export const addLink = async (salt: string, data: IPersonData) => {
 	await addUserCount();
 };
 
-export const sendNickName = (salt: string, data: INickName) => {
+export const sendLetter = (salt: string, data: Letter) => {
 	const db = getDatabase();
 	const createData = {
 		...data,
 		createdDate: Date.now()
 	};
 
-	push(ref(db, 'links/' + salt + '/nickNames/'), createData);
+	push(ref(db, 'links/' + salt + '/letters/'), createData);
 	addNickNameCount();
 };
 
 export const getPersonBySalt = async (
 	salt: string
-): Promise<IPersonData | null> => {
+): Promise<LetterBox | null> => {
 	const dbRef = ref(getDatabase());
 	try {
 		const snapshot = await get(child(dbRef, `links/${salt}`));
 		if (snapshot.exists()) {
 			const res = snapshot.val();
 
-			const person: IPersonData = {
+			const person: LetterBox = {
 				...res
 			};
-			if (res.nickNames) {
-				person.nickNames = Object.values(res.nickNames);
+			if (res.letters) {
+				person.letters = Object.values(res.letters);
 			} else {
-				person.nickNames = [];
+				person.letters = [];
 			}
 
 			return person;
