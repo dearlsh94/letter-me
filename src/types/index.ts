@@ -1,4 +1,5 @@
 export interface Letter {
+	to: string;
 	content: string;
 	from: string;
 }
@@ -6,7 +7,7 @@ export interface Letter {
 export interface LetterBox {
 	key: string;
 	name: string;
-	letters: Map<string, Letter[]>;
+	letters: Map<string, Letter>;
 }
 
 export interface CountSummary {

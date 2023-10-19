@@ -6,6 +6,7 @@
 	import { countSummary } from '../../store/common';
 	import { onMount } from 'svelte';
 	import Button from '../../components/common/Button.svelte';
+	import { copyLink } from '../../utils/common';
 
 	let key = '';
 	let name = '';
@@ -25,24 +26,6 @@
 
 		await createLetterBox(key, name);
 		countSummary.refresh();
-	};
-
-	const copyLink = async (textToCopy = '') => {
-		try {
-			if (navigator.clipboard) {
-				await navigator.clipboard.writeText(textToCopy);
-			} else {
-				const textField = document.createElement('textarea');
-				textField.innerText = textToCopy;
-				document.body.appendChild(textField);
-				textField.select();
-				document.execCommand('copy');
-				textField.remove();
-			}
-			alert('클립보드에 복사했어요!');
-		} catch (error) {
-			alert('복사되지 않았어요.');
-		}
 	};
 </script>
 
@@ -112,8 +95,5 @@
 		display: flex;
 		flex-direction: column;
 		row-gap: 12px;
-	}
-	.content .completed-box .button-box button {
-		width: 100%;
 	}
 </style>

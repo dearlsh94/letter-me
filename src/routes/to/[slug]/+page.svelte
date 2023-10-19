@@ -35,6 +35,10 @@
 	};
 
 	const send = async () => {
+		if (!box) {
+			return false;
+		}
+
 		if (!content) {
 			alert('내용을 입력해주세요!');
 			return;
@@ -46,6 +50,7 @@
 		}
 
 		await sendLetter(slug, {
+			to: box.name,
 			content,
 			from
 		});

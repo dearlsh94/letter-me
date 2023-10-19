@@ -1,5 +1,7 @@
-export function load({ params }) {
+export function load({ params, url }) {
+	const search = new URLSearchParams(url.search);
 	return {
-		slug: params.slug
+		slug: params.slug,
+		from: decodeURIComponent(search.get('from') || '')
 	};
 }
