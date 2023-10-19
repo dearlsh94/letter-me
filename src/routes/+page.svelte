@@ -10,7 +10,7 @@
 			return;
 		}
 
-		location.href = `/my/${key}`;
+		location.href = `/letter-box/${key}`;
 	};
 </script>
 

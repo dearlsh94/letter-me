@@ -1,15 +1,15 @@
 <script lang="ts">
-	import NickNameCard from '../../../components/NickNameCard.svelte';
 	import type { LetterBox } from '../../../types/index';
 	import { getLetterBoxByKey } from '../../../firebase';
 	import { onMount } from 'svelte';
+	import LetterCard from '../../../components/LetterCard.svelte.svelte';
 
 	export let data: {
 		slug: string;
 	};
 	const { slug } = data;
 
-	let person: LetterBox | null = null;
+	let box: LetterBox | null = null;
 
 	onMount(() => {
 		if (slug) {
@@ -18,12 +18,11 @@
 	});
 
 	const init = async () => {
-		person = await getLetterBoxByKey(slug);
-
-		console.log({ person });
-		if (person === null) {
+		box = await getLetterBoxByKey(slug);
+		console.log({ box });
+		if (!box) {
 			alert('존재하지 않는 편지함 ID예요.');
-			location.href = '/';
+			// location.href = '/';
 		}
 	};
 
@@ -53,11 +52,11 @@
 </script>
 
 <div class="bodyWrapper">
-	{#if person}
+	{#if box}
 		<div class="titleWrapper">
-			<h1>{person ? person.name : ''}의</h1>
+			<h1>{box.name || ''}의</h1>
 			<h1>별명들</h1>
-			<h4>총 {person?.letters?.length}개의 별명이 있어요.</h4>
+			<h4>총 {Object.keys(box.letters).length}개의 별명이 있어요.</h4>
 			<span class="copyText" on:click={copyLink} on:keypress={copyLink}>
 				편지함 작성 주소 복사하기
 			</span>
@@ -67,10 +66,10 @@
 		</div>
 
 		<div class="contentWrapper">
-			{#if person.letters}
+			{#if box.letters}
 				<div class="cardsWrapper">
-					{#each person.letters as nickName}
-						<NickNameCard {nickName} />
+					{#each Object.values(box.letters) as letter}
+						<LetterCard {letter} />
 					{/each}
 				</div>
 			{/if}
