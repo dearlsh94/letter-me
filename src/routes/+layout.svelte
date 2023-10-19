@@ -11,14 +11,21 @@
 
 <div class="app">
 	<header>
-		<div class="logo-box">Letter Me</div>
+		<div class="logo-box">
+			<Linker url="/" label="홈">
+				<div>Letter Me</div>
+			</Linker>
+		</div>
 		<nav>
 			<ul>
 				<li>
 					<Linker url={'/'} label="홈">Home</Linker>
 				</li>
 				<li>
-					<Linker url={'/letter-box'} label="편지함">Box</Linker>
+					<Linker url={'/to'} label="편지 쓰기">To</Linker>
+				</li>
+				<li>
+					<Linker url={'/letter-box'} label="편지함">My</Linker>
 				</li>
 			</ul>
 		</nav>
@@ -36,7 +43,6 @@
 			</p>
 		</div>
 		<p>
-			visit
 			<Linker
 				url="https://github.com/dearlsh94/letter-me"
 				label="Github"
@@ -62,8 +68,22 @@
 		padding: 0px 1rem;
 		border-bottom: 1px solid #e5e5e5;
 	}
+	header :global(a) {
+		color: #333;
+		text-decoration: none;
+	}
 	header nav ul {
 		display: flex;
+	}
+	header nav ul li {
+		width: 64px;
+		text-align: center;
+		transition: transform 0.3s;
+	}
+	@media (hover: hover) {
+		header nav ul li:hover {
+			transform: translateY(-4px);
+		}
 	}
 
 	main {

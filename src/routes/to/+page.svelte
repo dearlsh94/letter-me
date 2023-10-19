@@ -1,27 +1,36 @@
 <script lang="ts">
 	import Head1 from '../../components/common/Head1.svelte';
 	import InputTextButton from '../../components/common/InputTextButton.svelte';
+	import { getLetterBoxByKey } from '../../firebase';
 
 	let key = '';
 
-	const searchId = () => {
+	const searchId = async () => {
 		if (!key) {
 			alert('ID를 입력해주세요.');
 			return;
 		}
 
-		location.href = `/letter-box/${key}`;
+		if (!(await getLetterBoxByKey(key))) {
+			alert('편지함을 찾을 수 없어요.');
+			return false;
+		}
+
+		location.href = `/to/${key}`;
 	};
 </script>
 
-<Head1 center={true}>내 편지함 찾기</Head1>
+<Head1 center={true}>편지 보내기</Head1>
 <div class="content">
-	<InputTextButton
-		bind:value={key}
-		placeholder="ID로 편지함 찾기"
-		buttonText="편지함 찾기"
-		handleClick={searchId}
-	/>
+	<div class="create-box">
+		<p>To.</p>
+		<InputTextButton
+			bind:value={key}
+			placeholder="보낼 편지함 ID"
+			buttonText="보내기"
+			handleClick={searchId}
+		/>
+	</div>
 	<div class="more-box">
 		<span>아직 내 편지함이 없다면?</span>
 		<a href="/">편지함 만들기</a>
@@ -33,6 +42,14 @@
 		display: flex;
 		flex-direction: column;
 		row-gap: 36px;
+	}
+	.content .create-box {
+		position: relative;
+	}
+	.content .create-box p {
+		position: absolute;
+		left: 0;
+		top: -1.5rem;
 	}
 	.content .more-box {
 		display: flex;

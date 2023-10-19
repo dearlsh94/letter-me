@@ -6,3 +6,10 @@
 <a href={url} aria-label={`${label} 이동`} {...$$props}>
 	<slot />
 </a>
+
+<style>
+	a {
+		display: block;
+		width: 100%;
+	}
+</style>

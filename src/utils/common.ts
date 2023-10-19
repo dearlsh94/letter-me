@@ -2,7 +2,7 @@ export const generateRandomUUID = () => {
 	return crypto.randomUUID()
 };
 
-export const copyLink = async (textToCopy = '') => {
+export const copyText = async (textToCopy = '') => {
 	try {
 		if (navigator.clipboard) {
 			await navigator.clipboard.writeText(textToCopy);
