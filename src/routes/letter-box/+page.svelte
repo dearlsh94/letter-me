@@ -5,6 +5,7 @@
 	import { generateRandomUUID } from '../../utils/common';
 	import { countSummary } from '../../store/common';
 	import { onMount } from 'svelte';
+	import Button from '../../components/common/Button.svelte';
 
 	let key = '';
 	let name = '';
@@ -81,15 +82,11 @@
 				</a>
 			</div>
 			<div class="button-box">
-				<button class="button-6 copyButton" on:click={() => copyLink(key)}>
-					Key 복사하기
-				</button>
-				<button
-					class="button-6 copyButton"
-					on:click={() => copyLink(`${origin}/to/${key}`)}
-				>
-					편지지 주소 복사하기
-				</button>
+				<Button text="Key 복사하기" handleClick={() => copyLink(key)} />
+				<Button
+					text="편지지 주소 복사하기"
+					handleClick={() => copyLink(`${origin}/to/${key}`)}
+				/>
 			</div>
 		</div>
 	{/if}

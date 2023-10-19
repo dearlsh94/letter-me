@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from './Button.svelte';
+
 	export let value = '';
 	export let placeholder = '';
 	export let buttonText = '';
@@ -7,7 +9,7 @@
 
 <div class="input-text-button" {...$$props}>
 	<input bind:value {placeholder} />
-	<button class="button-6" on:click={handleClick}>{buttonText}</button>
+	<Button class="input-button" text={buttonText} {handleClick} />
 </div>
 
 <style>
@@ -24,7 +26,7 @@
 		padding: 15px;
 		flex: 1;
 	}
-	.input-text-button button {
+	.input-text-button :global(.input-button) {
 		min-width: 124px;
 	}
 	@media (max-width: 768px) {
@@ -32,7 +34,7 @@
 			width: 100%;
 			padding: 8px;
 		}
-		.input-text-button button {
+		.input-text-button :global(.input-button) {
 			width: 100%;
 			margin-top: 4px;
 		}
