@@ -2,14 +2,14 @@
 	export let content = '';
 </script>
 
-<textarea bind:value={content} placeholder='안녕'/>
+<textarea bind:value={content} {...$$props} />
 
 <style>
 	textarea {
 		resize: none;
-    width: 100%;
-    height: 300px;
-    border-radius: 8px;
-    padding: 1rem;
+		width: 100%;
+		height: 300px;
+		border-radius: 8px;
+		padding: 1rem;
 	}
 </style>

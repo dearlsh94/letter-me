@@ -54,7 +54,7 @@
 
 <Head1>To. {name}</Head1>
 <div class="content">
-	<TextArea bind:content />
+	<TextArea bind:content placeholder="안녕" />
 	<InputTextButton
 		bind:value={from}
 		placeholder="From. "

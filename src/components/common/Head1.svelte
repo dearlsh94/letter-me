@@ -1,8 +1,8 @@
 <script lang="ts">
-  export let center = false;
+	export let center = false;
 </script>
 
-<h1 class:CENTER={center}>
+<h1 class:CENTER={center} {...$$props}>
 	<slot />
 </h1>
 
@@ -12,7 +12,7 @@
 		font-size: 2rem;
 		font-weight: 700;
 	}
-  h1.CENTER {
-    text-align: center;
-  }
+	h1.CENTER {
+		text-align: center;
+	}
 </style>

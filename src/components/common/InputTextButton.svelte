@@ -5,7 +5,7 @@
 	export let handleClick = () => {};
 </script>
 
-<div class="input-text-button">
+<div class="input-text-button" {...$$props}>
 	<input bind:value {placeholder} />
 	<button class="button-6" on:click={handleClick}>{buttonText}</button>
 </div>

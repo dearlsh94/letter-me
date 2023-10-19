@@ -2,6 +2,7 @@
 	import './global.css';
 	import { countSummary } from '../store/common';
 	import { onMount } from 'svelte';
+	import Linker from '../components/common/Linker.svelte';
 
 	onMount(() => {
 		countSummary.refresh();
@@ -13,8 +14,12 @@
 		<div class="logo-box">Letter Me</div>
 		<nav>
 			<ul>
-				<li>Home</li>
-				<li>Create</li>
+				<li>
+					<Linker url={'/'} label="홈">Home</Linker>
+				</li>
+				<li>
+					<Linker url={'/letter-box'} label="편지함">Box</Linker>
+				</li>
 			</ul>
 		</nav>
 	</header>
@@ -31,7 +36,14 @@
 			</p>
 		</div>
 		<p>
-			visit <a href="https://github.com/dearlsh94/letter-me">Github</a>
+			visit
+			<Linker
+				url="https://github.com/dearlsh94/letter-me"
+				label="Github"
+				target="_blank"
+			>
+				Github
+			</Linker>
 		</p>
 	</footer>
 </div>
