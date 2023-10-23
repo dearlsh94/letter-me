@@ -1,6 +1,6 @@
 <script lang="ts">
 	import './global.css';
-	import { countSummary } from '../store/common';
+	import { countSummary, openLetter } from '../store/common';
 	import { onMount } from 'svelte';
 	import Linker from '../components/common/Linker.svelte';
 
@@ -32,6 +32,20 @@
 	</header>
 	<main>
 		<slot />
+		{#if $openLetter}
+			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+			<dialog open on:click={openLetter.close} on:keyup={openLetter.close}>
+				<p>
+					To. {$openLetter.to}
+				</p>
+				<p>
+					{$openLetter.content}
+				</p>
+				<p>
+					From. {$openLetter.from}
+				</p>
+			</dialog>
+		{/if}
 	</main>
 	<footer>
 		<div class="info-box">

@@ -26,7 +26,12 @@
 			alert('존재하지 않는 편지함 ID예요.');
 			// location.href = '/';
 		} else {
-			letters = Object.values(box?.letters);
+			letters = Object.entries(box.letters).map(([key, value]) => {
+				return {
+					key,
+					...value
+				};
+			});
 		}
 	};
 </script>

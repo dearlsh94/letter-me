@@ -1,4 +1,5 @@
 export interface Letter {
+	key: string;
 	to: string;
 	content: string;
 	from: string;

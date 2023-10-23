@@ -1,11 +1,22 @@
 <script lang="ts">
+	import { openLetter } from '../store/common';
 	import type { Letter } from '../types/index';
 
 	export let letter: Letter;
 	export let isOpen = false;
+
+	const handleClick = () => {
+		openLetter.set(letter);
+	};
 </script>
 
-<div class="letter-card">
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div
+	class="letter-card"
+	on:click={handleClick}
+	on:keyup={handleClick}
+	aria-label={`From.${letter.from} 편지 보기`}
+>
 	<p>
 		From. <span>{letter.from}</span>
 	</p>
@@ -24,6 +35,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		cursor: pointer;
 	}
 
 	@media (max-width: 768px) {
