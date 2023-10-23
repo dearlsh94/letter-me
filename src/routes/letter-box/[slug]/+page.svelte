@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import LetterCard from '../../../components/LetterCard.svelte.svelte';
 	import Head1 from '../../../components/common/Head1.svelte';
+	import LoadingSpinner from '../../../components/common/LoadingSpinner.svelte';
 
 	export let data: {
 		slug: string;
@@ -11,6 +12,7 @@
 	};
 	const { slug, from } = data;
 
+	let isLoading = true;
 	let box: LetterBox | null = null;
 	let letters: Letter[] = [];
 
@@ -21,27 +23,43 @@
 	});
 
 	const init = async () => {
-		box = await getLetterBoxByKey(slug);
-		if (!box) {
-			alert('존재하지 않는 편지함 ID예요.');
-			// location.href = '/';
-		} else {
-			letters = Object.entries(box.letters).map(([key, value]) => {
-				return {
-					key,
-					...value
-				};
-			});
+		try {
+			box = await getLetterBoxByKey(slug);
+			if (!box) {
+				alert('존재하지 않는 편지함 ID예요.');
+				// location.href = '/';
+			} else {
+				letters = Object.entries(box.letters).map(([key, value]) => {
+					return {
+						key,
+						...value
+					};
+				});
+			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			isLoading = false;
 		}
 	};
 </script>
 
 <div class="title">
-	<Head1>To. {box?.name || ''}</Head1>
-	<sub>총 {letters.length}개의 편지가 있어요.</sub>
+	<Head1>
+		{#if isLoading}
+			편지함 찾는 중...
+		{:else}
+			To. {box?.name || ''}
+		{/if}
+	</Head1>
+	{#if box}
+		<sub>총 {letters.length}개의 편지가 있어요.</sub>
+	{/if}
 </div>
 <div class="content">
-	{#if box}
+	{#if isLoading}
+		<LoadingSpinner />
+	{:else if box}
 		{#if letters.length}
 			<div class="letters-box">
 				{#each letters as letter}

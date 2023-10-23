@@ -130,8 +130,4 @@
 	footer .info-box p {
 		font-size: 0.75rem;
 	}
-
-	footer a {
-		font-weight: bold;
-	}
 </style>
