@@ -8,8 +8,8 @@
 	import Button from '../components/common/Button.svelte';
 	import { copyText } from '../utils/common';
 
-	let key = 'key-key';
-	let name = 'hi';
+	let key = '';
+	let name = '';
 	let origin = '';
 
 	onMount(() => {
@@ -29,7 +29,7 @@
 	};
 </script>
 
-{#if key || true}
+{#if key}
 	<Head1 center={true}>반갑습니다, {name}님</Head1>
 	<div class="content">
 		<div class="completed-box">
