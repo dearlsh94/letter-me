@@ -25,7 +25,7 @@
 					<Linker url={'/to'} label="편지 쓰기">To</Linker>
 				</li>
 				<li>
-					<Linker url={'/letter-box'} label="편지함">My</Linker>
+					<Linker url={'/letter-box'} label="편지함">Box</Linker>
 				</li>
 			</ul>
 		</nav>
