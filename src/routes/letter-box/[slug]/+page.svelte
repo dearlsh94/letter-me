@@ -79,11 +79,13 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		row-gap: 36px;
+		row-gap: 32px;
 	}
 	.letters-box {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
+		row-gap: 24px;
+		column-gap: 16px;
 	}
 	@media (max-width: 768px) {
 		.letters-box {

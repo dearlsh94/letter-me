@@ -10,10 +10,9 @@
 	};
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class="letter-card"
-	role="button"
-	tabindex={-1}
 	on:click={handleClick}
 	on:keyup={handleClick}
 	aria-label={`From.${letter.from} 편지 보기`}
@@ -28,7 +27,10 @@
 
 <style>
 	.letter-card {
-		background-color: gray;
+		box-sizing: border-box;
+		background-color: #fff;
+		border: 1px solid #e5e5e5;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		padding: 12px;
 		border-radius: 12px;
 		width: 100%;
@@ -38,10 +40,12 @@
 		justify-content: center;
 		cursor: pointer;
 	}
-
-	@media (max-width: 768px) {
+	@media (hover: hover) and (pointer: fine) {
 		.letter-card {
-			width: 80%;
+			transition: transform 0.3s;
+		}
+		.letter-card:hover {
+			transform: translateY(-8px);
 		}
 	}
 </style>
