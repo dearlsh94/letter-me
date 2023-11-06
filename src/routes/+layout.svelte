@@ -1,13 +1,16 @@
 <script lang="ts">
 	import './global.css';
-	import { countSummary, openLetter } from '../store/common';
+	import { countSummary } from '../store/common';
 	import { onMount } from 'svelte';
 	import Linker from '../components/common/Linker.svelte';
+	import LetterDialog from '../components/LetterDialog.svelte';
+
 	onMount(() => {
 		countSummary.refresh();
 	});
 </script>
 
+<div class="background" />
 <div class="app">
 	<header>
 		<div class="logo-box">
@@ -30,22 +33,8 @@
 		</nav>
 	</header>
 	<main>
-		<div class="background" />
 		<slot />
-		{#if $openLetter}
-			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-			<dialog open on:click={openLetter.close} on:keyup={openLetter.close}>
-				<p>
-					To. {$openLetter.to}
-				</p>
-				<p>
-					{$openLetter.content}
-				</p>
-				<p>
-					From. {$openLetter.from}
-				</p>
-			</dialog>
-		{/if}
+		<LetterDialog />
 	</main>
 	<footer>
 		<div class="info-box">
@@ -70,10 +59,25 @@
 </div>
 
 <style>
+	.background {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		background-image: url($lib/images/postbox.jpeg);
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		opacity: 0.3;
+	}
 	.app {
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		z-index: 1;
+		position: relative;
 	}
 	header {
 		display: flex;
@@ -113,19 +117,6 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 		row-gap: 3rem;
-	}
-	main .background {
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		background-image: url($lib/images/postbox.jpeg);
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-size: cover;
-		opacity: 0.3;
 	}
 
 	footer {

@@ -4,6 +4,8 @@
 
 	let key = '';
 
+	key = 'f08e5179-f50e-49d9-b252-578210e10006';
+
 	const searchId = () => {
 		if (!key) {
 			alert('ID를 입력해주세요.');

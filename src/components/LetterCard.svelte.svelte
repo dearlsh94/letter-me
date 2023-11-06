@@ -10,9 +10,10 @@
 	};
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class="letter-card"
+	role="button"
+	tabindex={-1}
 	on:click={handleClick}
 	on:keyup={handleClick}
 	aria-label={`From.${letter.from} 편지 보기`}
