@@ -61,7 +61,6 @@
 	<div class="content">
 		{#if key === ''}
 			<div class="create-box">
-				<p>I'm</p>
 				<InputTextButton
 					bind:value={name}
 					placeholder={'편지를 받을 내 이름'}

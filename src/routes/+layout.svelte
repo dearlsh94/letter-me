@@ -31,6 +31,7 @@
 		</nav>
 	</header>
 	<main>
+		<div class="background" />
 		<slot />
 		{#if $openLetter}
 			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -81,6 +82,7 @@
 		height: 4rem;
 		padding: 0px 1rem;
 		border-bottom: 1px solid #e5e5e5;
+		background-color: rgba(255, 255, 255, 0.9);
 	}
 	header :global(a) {
 		color: #333;
@@ -111,6 +113,19 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 		row-gap: 3rem;
+	}
+	main .background {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background-image: url($lib/images/postbox.jpeg);
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		opacity: 0.3;
 	}
 
 	footer {
