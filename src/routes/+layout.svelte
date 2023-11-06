@@ -3,7 +3,6 @@
 	import { countSummary, openLetter } from '../store/common';
 	import { onMount } from 'svelte';
 	import Linker from '../components/common/Linker.svelte';
-
 	onMount(() => {
 		countSummary.refresh();
 	});
@@ -65,6 +64,7 @@
 			>
 				Github
 			</Linker>
+			<span>Image Created By DALL-E3</span>
 		</p>
 	</footer>
 </div>
@@ -135,6 +135,12 @@
 		align-items: center;
 		padding: 1rem;
 		row-gap: 1rem;
+	}
+	footer p {
+		text-align: center;
+	}
+	footer p span {
+		font-size: 0.7rem;
 	}
 	footer .info-box {
 		width: 100%;
