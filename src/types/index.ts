@@ -1,19 +1,17 @@
-export interface INickName {
-  nickName: string,
-  reason: string,
-  fromId: string
+export interface Letter {
+	key: string;
+	to: string;
+	content: string;
+	from: string;
 }
 
-export interface IPersonData {
-  name: string,
-  salt: string,
-  sendLink?: string,
-  encrypted?: string,
-  myLink?: string
-  nickNames?: INickName[]
+export interface LetterBox {
+	key: string;
+	name: string;
+	letters: Map<string, Letter>;
 }
 
-export interface IInfoCount {
-  userCount: number,
-  nickNameCount: number
+export interface CountSummary {
+	letterBoxCount: number;
+	letterCount: number;
 }
